@@ -2,24 +2,30 @@ package org.astashonok.assessmentsystem.service.impl;
 
 import org.astashonok.assessmentsystem.model.Topic;
 import org.astashonok.assessmentsystem.service.api.TopicService;
-import org.junit.BeforeClass;
-import org.junit.Test;
+
+import org.astashonok.assessmentsystem.service.impl.util.TestHibernateConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.sql.SQLException;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetDb;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetTopic;
-import static org.junit.Assert.*;
 
-public class TopicServiceImplTest {
+@ContextConfiguration(classes = {TestHibernateConfig.class})
+public class TopicServiceImplTest extends AbstractTestNGSpringContextTests {
 
     private static TopicService topicService;
 
     @BeforeClass
     public static void init() throws SQLException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.scan("org.astashonok.assessmentsystem");
+        context.scan("org.astashonok.assessmentsystem.service");
         context.refresh();
         topicService = (TopicService) context.getBean("topicService");
         resetDb();
@@ -35,7 +41,6 @@ public class TopicServiceImplTest {
     @Test
     public void getById() {
         Topic expected = new Topic("Topic 2", "Description Topic 2");
-        expected.setId(2);
         Topic actual = topicService.getById(2);
         assertEquals(expected, actual);
     }

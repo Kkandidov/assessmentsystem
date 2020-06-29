@@ -1,13 +1,11 @@
 package org.astashonok.assessmentsystem.model;
 
 import org.astashonok.assessmentsystem.model.abstracts.EntityAbstract;
-import org.astashonok.assessmentsystem.model.enums.RoleName;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class User extends EntityAbstract {
@@ -16,7 +14,11 @@ public class User extends EntityAbstract {
     private String lastName;
     private String login;
     private String password;
-    private String roleName;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "userRole", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
+    private Set<Role> roles;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -25,12 +27,13 @@ public class User extends EntityAbstract {
     public User() {
     }
 
-    public User(String firstName, String lastName, String login, String password, RoleName roleName) {
+    public User(String firstName, String lastName, String login, String password, Role... roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
-        this.roleName = roleName.name();
+        this.roles = new HashSet<>();
+        this.roles.addAll(Arrays.asList(roles));
     }
 
     public String getFirstName() {
@@ -65,16 +68,19 @@ public class User extends EntityAbstract {
         this.password = password;
     }
 
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(RoleName roleName) {
-        this.roleName = roleName.name();
-    }
-
     public Set<Statistic> getStatistic() {
         return statistic;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Role... roles) {
+        if(this.roles == null){
+            this.roles = new HashSet<>();
+        }
+        this.roles.addAll(Arrays.asList(roles));
     }
 
     @Override
@@ -85,13 +91,12 @@ public class User extends EntityAbstract {
         return Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(roleName, user.roleName);
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, login, password, roleName);
+        return Objects.hash(firstName, lastName, login, password);
     }
 
     @Override
@@ -102,8 +107,7 @@ public class User extends EntityAbstract {
                 ", lastName='" + lastName + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", roleName='" + roleName + '\'' +
-                ", statistic=" + statistic +
+                ", roles=" + roles +
                 '}';
     }
 }

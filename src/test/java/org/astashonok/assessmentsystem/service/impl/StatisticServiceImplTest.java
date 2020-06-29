@@ -1,32 +1,34 @@
 package org.astashonok.assessmentsystem.service.impl;
 
-import org.astashonok.assessmentsystem.model.Question;
-import org.astashonok.assessmentsystem.model.Statistic;
-import org.astashonok.assessmentsystem.model.Topic;
-import org.astashonok.assessmentsystem.model.User;
+import org.astashonok.assessmentsystem.model.*;
 import org.astashonok.assessmentsystem.model.enums.RoleName;
 import org.astashonok.assessmentsystem.service.api.StatisticService;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.astashonok.assessmentsystem.service.impl.util.TestHibernateConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetDb;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetStatistic;
-import static org.junit.Assert.*;
 
-public class StatisticServiceImplTest {
+@ContextConfiguration(classes = {TestHibernateConfig.class})
+public class StatisticServiceImplTest extends AbstractTestNGSpringContextTests{
 
     private static StatisticService statisticService;
 
     @BeforeClass
     public static void init() throws SQLException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.scan("org.astashonok.assessmentsystem");
+        context.scan("org.astashonok.assessmentsystem.service");
         context.refresh();
         statisticService = (StatisticService) context.getBean("statisticService");
         resetDb();
@@ -34,8 +36,10 @@ public class StatisticServiceImplTest {
 
     @Test
     public void add() {
+        Role role3 = new Role(RoleName.ROLE_USER);
+        role3.setId(3);
         User user3 = new User("User", "Userovic", "user", "userPassword"
-                , RoleName.ROLE_USER);
+                , role3);
         user3.setId(3);
         Topic topic3 = new Topic("Topic 3", "Description Topic 3");
         topic3.setId(3);
@@ -56,8 +60,8 @@ public class StatisticServiceImplTest {
         user3.setId(3);
         Question question3 = new Question();
         question3.setId(3);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd");
-        Date date = formatter.parse("2020-01-12");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
+        Date date = formatter.parse("2020-01-12 10:39:22");
 
         Statistic expected = new Statistic(date, false, question3, user3);
         Statistic actual = statisticService.getById(3);
@@ -66,8 +70,10 @@ public class StatisticServiceImplTest {
 
     @Test
     public void update() {
+        Role role3 = new Role(RoleName.ROLE_USER);
+        role3.setId(3);
         User user3 = new User("User", "Userovic", "user", "userPassword"
-                , RoleName.ROLE_USER);
+                , role3);
         user3.setId(3);
         Topic topic4 = new Topic("Topic 4", "Description Topic 4");
         topic4.setId(4);
@@ -85,8 +91,10 @@ public class StatisticServiceImplTest {
 
     @Test
     public void delete() throws ParseException {
+        Role role3 = new Role(RoleName.ROLE_USER);
+        role3.setId(3);
         User user3 = new User("User", "Userovic", "user", "userPassword"
-                , RoleName.ROLE_USER);
+                , role3);
         user3.setId(3);
         Topic topic2 = new Topic("Topic 2", "Description Topic 2");
         topic2.setId(2);

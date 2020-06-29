@@ -20,11 +20,11 @@ public class SimpleSingleConnection {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        URL = (properties.getProperty("url"));
-        USER_NAME = properties.getProperty("username");
-        PASSWORD = properties.getProperty("password");
+        URL = (properties.getProperty("database.url"));
+        USER_NAME = properties.getProperty("database.username");
+        PASSWORD = properties.getProperty("database.password");
         try {
-            Class.forName((properties.getProperty("driver")));
+            Class.forName((properties.getProperty("database.driverClassName")));
         } catch (ClassNotFoundException e) {
             System.out.println("Driver isn't found! ");
             e.printStackTrace();

@@ -2,24 +2,29 @@ package org.astashonok.assessmentsystem.service.impl;
 
 import org.astashonok.assessmentsystem.model.Topic;
 import org.astashonok.assessmentsystem.service.api.TestService;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.astashonok.assessmentsystem.service.impl.util.TestHibernateConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.sql.SQLException;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetDb;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetTest;
-import static org.junit.Assert.*;
 
-public class TestServiceImplTest {
+@ContextConfiguration(classes = {TestHibernateConfig.class})
+public class TestServiceImplTest extends AbstractTestNGSpringContextTests{
 
     private static TestService testService;
 
     @BeforeClass
     public static void init() throws SQLException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.scan("org.astashonok.assessmentsystem");
+        context.scan("org.astashonok.assessmentsystem.service");
         context.refresh();
         testService = (TestService) context.getBean("testService");
         resetDb();

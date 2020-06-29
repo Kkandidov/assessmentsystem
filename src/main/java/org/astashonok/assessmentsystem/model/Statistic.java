@@ -13,7 +13,7 @@ import static javax.persistence.CascadeType.DETACH;
 public class Statistic extends EntityAbstract {
 
     private static final long serialVersionUID = -6372957177860305322L;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     private boolean correct;
 

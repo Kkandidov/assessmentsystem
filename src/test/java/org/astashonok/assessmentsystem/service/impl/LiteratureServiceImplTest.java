@@ -4,24 +4,29 @@ import org.astashonok.assessmentsystem.model.Literature;
 import org.astashonok.assessmentsystem.model.Question;
 import org.astashonok.assessmentsystem.model.Topic;
 import org.astashonok.assessmentsystem.service.api.LiteratureService;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.astashonok.assessmentsystem.service.impl.util.TestHibernateConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.sql.SQLException;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetDb;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetLiterature;
-import static org.junit.Assert.*;
 
-public class LiteratureServiceImplTest {
+@ContextConfiguration(classes = {TestHibernateConfig.class})
+public class LiteratureServiceImplTest extends AbstractTestNGSpringContextTests{
 
     private static LiteratureService literatureService;
 
     @BeforeClass
     public static void init() throws SQLException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.scan("org.astashonok.assessmentsystem");
+        context.scan("org.astashonok.assessmentsystem.service");
         context.refresh();
         literatureService = (LiteratureService) context.getBean("literatureService");
         resetDb();

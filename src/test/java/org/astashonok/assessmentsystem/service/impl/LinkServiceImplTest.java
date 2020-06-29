@@ -5,24 +5,29 @@ import org.astashonok.assessmentsystem.model.Literature;
 import org.astashonok.assessmentsystem.model.Question;
 import org.astashonok.assessmentsystem.model.Topic;
 import org.astashonok.assessmentsystem.service.api.LinkService;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.astashonok.assessmentsystem.service.impl.util.TestHibernateConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.sql.SQLException;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetDb;
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetLink;
-import static org.junit.Assert.*;
 
-public class LinkServiceImplTest {
+@ContextConfiguration(classes = {TestHibernateConfig.class})
+public class LinkServiceImplTest extends AbstractTestNGSpringContextTests{
 
     private static LinkService linkService;
 
     @BeforeClass
     public static void init() throws SQLException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.scan("org.astashonok.assessmentsystem");
+        context.scan("org.astashonok.assessmentsystem.service");
         context.refresh();
         linkService = (LinkService) context.getBean("linkService");
         resetDb();

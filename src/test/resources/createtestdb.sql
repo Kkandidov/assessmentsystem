@@ -1,6 +1,6 @@
-CREATE SCHEMA `assessment_system` DEFAULT CHARACTER SET utf8;
+CREATE SCHEMA `test_assessment_system` DEFAULT CHARACTER SET utf8;
 
-USE `assessment_system`;
+USE `test_assessment_system`;
 
 SET FOREIGN_KEY_CHECKS=0;
 
