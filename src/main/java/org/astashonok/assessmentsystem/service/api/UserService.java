@@ -9,4 +9,5 @@ public interface UserService extends UserRepository {
 
     User getById(long id);
     List<User> getAll();
+    User getByLogin(String login);
 }

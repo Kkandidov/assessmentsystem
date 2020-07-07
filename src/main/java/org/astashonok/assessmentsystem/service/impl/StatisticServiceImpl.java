@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service("statisticService")
 public class StatisticServiceImpl implements StatisticService {
+
     private SessionFactory sessionFactory;
 
     @Autowired

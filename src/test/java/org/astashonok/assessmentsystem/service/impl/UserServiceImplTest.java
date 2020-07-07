@@ -82,4 +82,14 @@ public class UserServiceImplTest extends AbstractTestNGSpringContextTests{
         int actual = userService.getAll().size();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void getByLogin() {
+        Role role3 = new Role(RoleName.ROLE_USER);
+        role3.setId(3);
+        User expected = new User("User", "Userovic", "user", "userPassword"
+                , role3);
+        User actual = userService.getByLogin("user");
+        assertEquals(expected, actual);
+    }
 }

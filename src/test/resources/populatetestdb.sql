@@ -59,13 +59,16 @@ VALUES('Answer 4', true, 4);
 INSERT INTO `answer`(`description`, `correct`, `questionId`)
 VALUES('Answer 5', false, 5);
 
--- populate user table
+-- populate user table (https://bcrypt-generator.com/)
 INSERT INTO `user`(`firstName`, `lastName`, `login`, `password`)
-VALUES('Admin', 'Adminovic', 'admin', 'adminPassword');
+-- password = adminPassword
+VALUES('Admin', 'Adminovic', 'admin', '$2y$12$FxWZFvC8gEEvZQhHgg.YSO6ZqCjbU1x5cHtjWI8XxivApqG17JUUS');
 INSERT INTO `user`(`firstName`, `lastName`, `login`, `password`)
-VALUES('Tutor', 'Tutorovic', 'tutor', 'tutorPassword');
+-- password = tutorPassword
+VALUES('Tutor', 'Tutorovic', 'tutor', '$2y$12$kpa.v1Lq76nAVtDLwYls/Oya6wFzTvU9Vnqcwpj2kmPQlMnV0Z/Ea');
 INSERT INTO `user`(`firstName`, `lastName`, `login`, `password`)
-VALUES('User', 'Userovic', 'user', 'userPassword');
+-- password = userPassword
+VALUES('User', 'Userovic', 'user', '$2y$12$WAeUHsiu26Hu1Yi35JuN.e4JKc6wOrtA//cqKn/kB/lzDz5uDx6Xe');
 
 -- populate role table
 INSERT INTO `role`(`name`)

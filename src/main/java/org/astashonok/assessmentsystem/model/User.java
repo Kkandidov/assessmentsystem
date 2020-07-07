@@ -14,6 +14,8 @@ public class User extends EntityAbstract {
     private String lastName;
     private String login;
     private String password;
+    @Transient
+    private String confirmPassword;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "userRole", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
@@ -81,6 +83,14 @@ public class User extends EntityAbstract {
             this.roles = new HashSet<>();
         }
         this.roles.addAll(Arrays.asList(roles));
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     @Override

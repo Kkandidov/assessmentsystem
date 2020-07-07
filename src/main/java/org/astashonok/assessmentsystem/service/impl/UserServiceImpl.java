@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
+
     private SessionFactory sessionFactory;
 
     @Autowired
@@ -31,4 +32,16 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() {
         return getAll(User.class);
     }
+
+    @Override
+    public User getByLogin(String login) {
+        String query = "FROM User WHERE login = :login";
+        return sessionFactory
+                .getCurrentSession()
+                .createQuery(query, User.class)
+                .setParameter("login", login)
+                .getSingleResult();
+    }
+
+
 }

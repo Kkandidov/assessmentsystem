@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service("literatureService")
 public class LiteratureServiceImpl implements LiteratureService {
+
     private SessionFactory sessionFactory;
 
     @Autowired

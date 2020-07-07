@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service("testService")
 public class TestServiceImpl implements TestService {
+
     private SessionFactory sessionFactory;
 
     @Autowired

@@ -7,6 +7,7 @@
     <groupId>org.astashonok</groupId>
     <artifactId>assessmentsystem</artifactId>
     <version>1.0</version>
+    <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,6 +17,11 @@
         <mysql-connector.version>8.0.20</mysql-connector.version>
         <commons-dbcp2.version>2.7.0</commons-dbcp2.version>
         <spring.version>5.2.7.RELEASE</spring.version>
+        <javax.servlet.version>4.0.1</javax.servlet.version>
+        <junit.version>4.13</junit.version>
+        <testng.version>7.1.0</testng.version>
+        <jstl.version>1.2</jstl.version>
+        <spring.securiry.version>5.3.3.RELEASE</spring.securiry.version>
     </properties>
 
     <dependencies>
@@ -23,7 +29,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -53,6 +59,12 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
@@ -60,15 +72,21 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.1.0</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
+            <version>${javax.servlet.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
         </dependency>
 
         <dependency>
@@ -101,16 +119,50 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.securiry.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.securiry.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.securiry.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.securiry.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
+        <finalName>assessmentsystem</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
 
 </project>

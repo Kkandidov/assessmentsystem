@@ -27,7 +27,7 @@ CREATE TABLE `topic`(
 
 -- test table
 CREATE TABLE `test`(
-    `id`				BIGINT				NOT NULL	AUTO_INCREMENT,
+    `id`			BIGINT				NOT NULL	AUTO_INCREMENT,
     `name`			VARCHAR(100)		NOT NULL,
     `description`	VARCHAR(150),
     `topicId`		BIGINT				NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `test`(
 -- question table
 CREATE TABLE `question`(
     `id`			BIGINT				NOT NULL	AUTO_INCREMENT,
-    `description`VARCHAR(150)		NOT NULL,
+    `description`   VARCHAR(150)		NOT NULL,
     `testId`		BIGINT				NOT NULL,
 
     CONSTRAINT	`pk_questionId`				PRIMARY KEY	(`id`),
@@ -59,13 +59,14 @@ CREATE TABLE `answer`(
 
 -- user table
 CREATE TABLE `user`(
-    `id`				BIGINT				NOT NULL	AUTO_INCREMENT,
+    `id`			BIGINT				NOT NULL	AUTO_INCREMENT,
     `firstName`		VARCHAR(50)			NOT NULL,
     `lastName`		VARCHAR(50),
     `login`			VARCHAR(50)			NOT NULL,
     `password`		VARCHAR(255)		NOT NULL,
 
-    CONSTRAINT	`pk_userId`					PRIMARY KEY	(`id`)
+    CONSTRAINT	`pk_userId`					PRIMARY KEY	(`id`),
+    UNIQUE (`login`)
 )ENGINE = InnoDB;
 
 -- role table
@@ -81,8 +82,8 @@ CREATE TABLE `role`(
 
 -- userRole table
 CREATE TABLE `userRole`(
-    `userId`			BIGINT				NOT NULL,
-    `roleId`			BIGINT				NOT NULL,
+    `userId`		BIGINT				NOT NULL,
+    `roleId`		BIGINT				NOT NULL,
 
     CONSTRAINT	`fk_userRole_userId`		FOREIGN KEY (`userId`)			REFERENCES	`user`			(`id`)	ON DELETE CASCADE,
     CONSTRAINT	`fk_userRole_roleId`		FOREIGN KEY (`roleId`)			REFERENCES	`role`			(`id`)	ON DELETE CASCADE
