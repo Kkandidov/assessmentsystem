@@ -32,4 +32,13 @@ public class AnswerServiceImpl implements AnswerService {
     public List<Answer> getAll() {
         return getAll(Answer.class);
     }
+
+    @Override
+    public List<Answer> getByQuestionId(long id) {
+        return sessionFactory
+                .getCurrentSession()
+                .createQuery("FROM Answer WHERE question.id = :id", Answer.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 }

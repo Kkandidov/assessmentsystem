@@ -9,4 +9,5 @@ public interface AnswerService extends AnswerRepository {
 
     Answer getById(long id);
     List<Answer> getAll();
+    List<Answer> getByQuestionId(long id);
 }

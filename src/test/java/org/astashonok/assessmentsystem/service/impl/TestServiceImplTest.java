@@ -84,4 +84,11 @@ public class TestServiceImplTest extends AbstractTestNGSpringContextTests{
         int actual = testService.getAll().size();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void getByTopicId(){
+        int expected = 1;
+        int actual = testService.getByTopicId(1).size();
+        assertEquals(expected, actual);
+    }
 }

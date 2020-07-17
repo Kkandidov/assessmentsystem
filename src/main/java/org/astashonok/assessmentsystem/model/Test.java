@@ -1,5 +1,6 @@
 package org.astashonok.assessmentsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.astashonok.assessmentsystem.model.abstracts.EntityAbstract;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -19,10 +20,12 @@ public class Test extends EntityAbstract {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH, DETACH})
     @JoinColumn(name = "topicId", nullable = false)
+    @JsonIgnore
     private Topic topic;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "test")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Set<Question> questions;
 
     public Test() {

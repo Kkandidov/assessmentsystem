@@ -32,4 +32,13 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Question> getAll() {
         return getAll(Question.class);
     }
+
+    @Override
+    public List<Question> getByTestId(long id) {
+        return sessionFactory
+                .getCurrentSession()
+                .createQuery("FROM Question WHERE test.id = :id", Question.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 }

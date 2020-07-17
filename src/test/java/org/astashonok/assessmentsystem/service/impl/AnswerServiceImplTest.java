@@ -100,4 +100,11 @@ public class AnswerServiceImplTest extends AbstractTestNGSpringContextTests{
         int actual = answerService.getAll().size();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void getByQuestionId(){
+        int expected = 1;
+        int actual = answerService.getByQuestionId(1).size();
+        assertEquals(expected, actual);
+    }
 }

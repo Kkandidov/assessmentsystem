@@ -9,4 +9,5 @@ public interface QuestionService extends QuestionRepository {
 
     Question getById(long id);
     List<Question> getAll();
+    List<Question> getByTestId(long id);
 }

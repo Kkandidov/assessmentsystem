@@ -1,28 +1,30 @@
 package org.astashonok.assessmentsystem.controller;
 
-import org.astashonok.assessmentsystem.model.User;
-import org.astashonok.assessmentsystem.service.api.UserService;
+import org.astashonok.assessmentsystem.dto.user.TestDto;
+import org.astashonok.assessmentsystem.dto.user.UserDto;
+import org.astashonok.assessmentsystem.model.Statistic;
+import org.astashonok.assessmentsystem.service.api.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 @Controller
+@SessionAttributes({"testDto", "userDto"})
 public class PageController {
 
     @Autowired
-    UserService userService;
+    private StatisticService statisticService;
 
     @GetMapping(value = {"/", "/home", "/index"})
     public ModelAndView index() {
@@ -58,33 +60,26 @@ public class PageController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
+    public String logout(HttpServletRequest request, HttpServletResponse response,
+                         @ModelAttribute("userDto") UserDto userDto,
+                         @ModelAttribute("testDto") TestDto testDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
+
+            if (userDto.getRoles().contains("ROLE_USER") && testDto.getStatistics() != null) {
+                for (Statistic s : testDto.getStatistics()) {
+                    if (s.getUser() == null) {
+                        s.setUser(userDto.getUser());
+                        s.setDate(new Date());
+                    }
+                    statisticService.add(s);
+                }
+                testDto.iterator().clearData();
+            }
+
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
         return "redirect:/login?logout";
     }
-
-//    @GetMapping("/registration")
-//    public ModelAndView register(Model model) {
-//        ModelAndView mv = new ModelAndView("page");
-//        mv.addObject("clickedRegistration", true);
-//        mv.addObject("title", "Регистрация");
-//        model.addAttribute("userModel", new User());
-//        return mv;
-//    }
-
-//    @PostMapping("/registration")
-//    public String register(@ModelAttribute("userModel") User userModel
-//            , BindingResult bindingResult) {
-////        userAutoModelValidator.validate(userAutoModel, bindingResult);
-////        if (bindingResult.hasErrors()) {
-////            return "registration";
-////        }
-//        User user = userService.add(userModel);
-//        securityService.autoLogIn(user.getEmail(), user.getConfirmPassword());
-//        return "redirect:/welcome?firstName=" + user.getFirstName() + "&lastName=" + user.getLastName();
-//    }
 }
 

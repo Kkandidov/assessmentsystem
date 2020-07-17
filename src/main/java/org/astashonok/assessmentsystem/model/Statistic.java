@@ -40,6 +40,7 @@ public class Statistic extends EntityAbstract {
     }
 
     public void setDate(Date date) {
+        this.date = date;
     }
 
     public boolean isCorrect() {

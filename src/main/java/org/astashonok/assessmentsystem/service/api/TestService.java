@@ -9,4 +9,5 @@ public interface TestService extends TestRepository {
 
     Test getById(long id);
     List<Test> getAll();
+    List<Test> getByTopicId(long id);
 }

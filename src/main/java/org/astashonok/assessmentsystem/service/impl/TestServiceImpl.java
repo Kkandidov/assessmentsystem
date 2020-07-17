@@ -32,4 +32,13 @@ public class TestServiceImpl implements TestService {
     public List<Test> getAll() {
         return getAll(Test.class);
     }
+
+    @Override
+    public List<Test> getByTopicId(long id) {
+        return sessionFactory
+                .getCurrentSession()
+                .createQuery("FROM Test WHERE topic.id = :id",Test.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 }
