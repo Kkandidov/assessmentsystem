@@ -5,6 +5,7 @@ import org.astashonok.assessmentsystem.service.api.QuestionService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,16 +25,19 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    @Transactional
     public Question getById(long id) {
         return getById(Question.class, id);
     }
 
     @Override
+    @Transactional
     public List<Question> getAll() {
         return getAll(Question.class);
     }
 
     @Override
+    @Transactional
     public List<Question> getByTestId(long id) {
         return sessionFactory
                 .getCurrentSession()

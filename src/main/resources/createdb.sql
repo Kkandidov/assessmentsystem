@@ -15,6 +15,8 @@ DROP TABLE IF EXISTS `answer` 		CASCADE;
 DROP TABLE IF EXISTS `question` 	CASCADE;
 DROP TABLE IF EXISTS `test` 		CASCADE;
 DROP TABLE IF EXISTS `topic` 		CASCADE;
+DROP PROCEDURE IF EXISTS getUserStatistic;
+DROP PROCEDURE IF EXISTS getUserFullStatistic;
 
 -- topic table
 CREATE TABLE `topic`(
@@ -123,3 +125,42 @@ CREATE TABLE `link`(
 )ENGINE = InnoDB;
 
 SET FOREIGN_KEY_CHECKS=1;
+
+-- create a stored procedures
+DELIMITER //
+CREATE PROCEDURE getUserStatistic (IN user_id BIGINT, IN startDate DATETIME, IN endDate DATETIME)
+BEGIN
+    SELECT  id,
+            date,
+            correct,
+            questionId,
+            userId
+    FROM statistic
+    WHERE userId = user_id
+      AND date between startDate AND endDate;
+END//
+
+CREATE PROCEDURE getUserFullStatistic (IN user_id BIGINT)
+BEGIN
+    SELECT 	id AS userId,
+              testName,
+              CONCAT (firstName, ' ', lastName) AS fullName,
+              questionDescription,
+              passedTimes,
+              (correctCount / passedTimes) * 100 AS correctAnswersPercentage
+    FROM user
+             JOIN (	SELECT 	questionId,
+                                 userId,
+                                 COUNT(questionId) AS passedTimes,
+                                 COUNT(IF(correct = 0, NULL, 1)) AS correctCount,
+                                 question.description AS questionDescription,
+                                 test.description AS testName
+                       FROM statistic
+                                JOIN question ON questionId = question.id
+                                JOIN test ON test.id = question.testId
+                       GROUP BY userId, questionId) AS prepared
+                  ON user.id = userId
+    WHERE userId = user_id
+    ORDER BY testName;
+END//
+DELIMITER ;

@@ -5,6 +5,7 @@ import org.astashonok.assessmentsystem.service.api.UserService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,16 +25,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User getById(long id) {
         return getById(User.class, id);
     }
 
     @Override
+    @Transactional
     public List<User> getAll() {
         return getAll(User.class);
     }
 
     @Override
+    @Transactional
     public User getByLogin(String login) {
         String query = "FROM User WHERE login = :login";
         return sessionFactory

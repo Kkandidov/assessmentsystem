@@ -5,6 +5,7 @@ import org.astashonok.assessmentsystem.service.api.TopicService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,11 +25,13 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    @Transactional
     public Topic getById(long id) {
         return getById(Topic.class, id);
     }
 
     @Override
+    @Transactional
     public List<Topic> getAll() {
         return getAll(Topic.class);
     }

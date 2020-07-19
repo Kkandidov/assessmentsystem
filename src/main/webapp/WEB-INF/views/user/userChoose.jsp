@@ -16,10 +16,10 @@
             </div>
             <div class="form-group">
                 <select class="form-control" id="testNames" name="testName">
-                    <option>Выберите тест</option>
-                    <c:forEach items="${tests}" var="test">
-                        <option value="${test.id}">${test.name}</option>
-                    </c:forEach>
+<%--                    <option>Выберите тест</option>--%>
+<%--                    <c:forEach items="${tests}" var="test">--%>
+<%--                        <option value="${test.id}">${test.name}</option>--%>
+<%--                    </c:forEach>--%>
                 </select>
             </div>
             <button type="button" class="btn btn-primary" id="testId">Пройти тестирование</button>

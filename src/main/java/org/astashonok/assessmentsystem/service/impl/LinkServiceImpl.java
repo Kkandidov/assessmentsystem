@@ -5,6 +5,7 @@ import org.astashonok.assessmentsystem.service.api.LinkService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,11 +25,13 @@ public class LinkServiceImpl implements LinkService {
     }
 
     @Override
+    @Transactional
     public Link getById(long id) {
         return getById(Link.class, id);
     }
 
     @Override
+    @Transactional
     public List<Link> getAll() {
         return getAll(Link.class);
     }

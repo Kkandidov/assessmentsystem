@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
@@ -21,7 +22,7 @@ import static org.astashonok.assessmentsystem.service.impl.util.StaticService.re
 import static org.astashonok.assessmentsystem.service.impl.util.StaticService.resetStatistic;
 
 @ContextConfiguration(classes = {TestHibernateConfig.class})
-public class StatisticServiceImplTest extends AbstractTestNGSpringContextTests{
+public class StatisticServiceImplTest extends AbstractTestNGSpringContextTests {
 
     private static StatisticService statisticService;
 
@@ -119,5 +120,27 @@ public class StatisticServiceImplTest extends AbstractTestNGSpringContextTests{
         int expected = 5;
         int actual = statisticService.getAll().size();
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getUserStatisticByUserIdAndDate() throws SQLException, ParseException {
+        resetStatistic();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
+        Date startDate = formatter.parse("2020-01-12 10:37:22");
+        Date endDate = formatter.parse("2020-01-12 10:40:22");
+        int expected = 4;
+        List<Statistic> statisticList = statisticService.getUserStatisticByUserIdAndDate(3, startDate, endDate);
+        for (Statistic s : statisticList){
+            Question q = s.getQuestion();
+            for (Literature l : q.getLiterature()){
+                for(Link li : l.getLinks()){
+                    System.out.println(li.getLink());
+                }
+            }
+            System.out.println(s);
+        }
+        int actual = statisticList.size();
+        assertEquals(expected, actual);
+
     }
 }

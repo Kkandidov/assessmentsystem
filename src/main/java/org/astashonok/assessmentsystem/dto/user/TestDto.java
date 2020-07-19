@@ -4,6 +4,7 @@ import org.astashonok.assessmentsystem.model.Question;
 import org.astashonok.assessmentsystem.model.Statistic;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +16,9 @@ public class TestDto {
     private int questionCounter;
     private int numberQuestions;
     private SequenceSelector sequenceSelector = new SequenceSelector();
+
+    private Date startDate;
+    private Date endDate;
 
     public long getId() {
         return id;
@@ -38,6 +42,22 @@ public class TestDto {
             s.setQuestion(this.questions.get(i));
             this.statistics.add(s);
         }
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public List<Statistic> getStatistics() {

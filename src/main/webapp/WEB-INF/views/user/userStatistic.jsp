@@ -12,43 +12,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        <c:forEach items="${userStatistic}" var="statistic">
+            <tr>
+                <th scope="row">${statistic.fullName}</th>
+                <td>${statistic.testName}</td>
+                <td>${statistic.questionDescription}</td>
+                <td>${statistic.passedTimes}</td>
+                <td>${statistic.correctAnswersPercentage}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
     <br>
-    <button type="button" class="btn btn-success" onclick="location.href='${contextRoot}/user/home'">На страницу пользователя</button>
+    <button type="button" class="btn btn-success" onclick="location.href='${contextRoot}/user/home'">На страницу
+        пользователя
+    </button>
 </div>

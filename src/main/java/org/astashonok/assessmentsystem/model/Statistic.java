@@ -9,6 +9,28 @@ import java.util.Objects;
 import static javax.persistence.CascadeType.*;
 import static javax.persistence.CascadeType.DETACH;
 
+
+@NamedStoredProcedureQuery(
+        name="getUserStatistic",
+        procedureName="GetUserStatistic",
+        resultClasses = { Statistic.class },
+        parameters={
+                @StoredProcedureParameter(name="user_id", type=Long.class, mode=ParameterMode.IN),
+                @StoredProcedureParameter(name="startDate", type=Date.class, mode=ParameterMode.IN),
+                @StoredProcedureParameter(name="endDate", type=Date.class, mode=ParameterMode.IN),
+        }
+)
+
+@NamedEntityGraph(
+        name = "graph.statistic",
+        attributeNodes = @NamedAttributeNode(value = "question", subgraph = "questionGraph"),
+        subgraphs = {
+                @NamedSubgraph(name = "questionGraph",
+                        attributeNodes = @NamedAttributeNode(value = "literature", subgraph = "literatureGraph")),
+                @NamedSubgraph(name = "literatureGraph",
+                        attributeNodes = @NamedAttributeNode(value = "links"))}
+)
+
 @Entity
 public class Statistic extends EntityAbstract {
 

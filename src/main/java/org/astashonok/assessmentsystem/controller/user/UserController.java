@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"testDto", "userDto"})
@@ -28,6 +29,8 @@ public class UserController {
     private AnswerService answerService;
     @Autowired
     private StatisticService statisticService;
+    @Autowired
+    private ResultStatisticDtoService resultStatisticDtoService;
 
     @GetMapping("/user/home")
     public ModelAndView getUserPage() {
@@ -48,10 +51,11 @@ public class UserController {
     }
 
     @GetMapping("/user/statistic")
-    public ModelAndView getUserStatistic() {
+    public ModelAndView getUserStatistic(@ModelAttribute("userDto") UserDto userDto) {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Статистика пользователя");
         mv.addObject("clickedUserStatistic", true);
+        mv.addObject("userStatistic", resultStatisticDtoService.getByUserId(userDto.getUser().getId()));
         return mv;
     }
 
@@ -100,23 +104,35 @@ public class UserController {
         if (answerModel.getId() != 0) {
             statistic.setCorrect(answerService.getById(answerModel.getId()).isCorrect());
         }
+        System.out.println(testDto.getStatistics().get(issueOrder));
         if (testDto.iterator().hasNext()) {
-            System.out.println(testDto.getStatistics().get(issueOrder));
             return "redirect:/user/test";
         } else {
+            List<Statistic> statistics = testDto.getStatistics();
+            testDto.setStartDate(statistics.get(0).getDate());
+            testDto.setEndDate(statistics.get(statistics.size() - 1).getDate());
+
             for (Statistic s : testDto.getStatistics()) {
                 statisticService.add(s);
             }
-            testDto.iterator().clearData();
+
             return "redirect:/user/test/result";
         }
     }
 
     @GetMapping("user/test/result")
-    public ModelAndView getTestResult() {
+    public ModelAndView getTestResult(@ModelAttribute("testDto") TestDto testDto,
+                                      @ModelAttribute("userDto") UserDto userDto) {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Результаты теста");
         mv.addObject("clickedResultTest", true);
+
+        long id = userDto.getUser().getId();
+        Date startDate = new Date(testDto.getStartDate().getTime() - 1000);
+        Date endDate = new Date(testDto.getEndDate().getTime() + 1000);
+
+        mv.addObject("resultStatistic", statisticService.getUserStatisticByUserIdAndDate(id, startDate, endDate));
+        testDto.iterator().clearData();
         return mv;
     }
 }

@@ -5,6 +5,7 @@ import org.astashonok.assessmentsystem.service.api.LiteratureService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,11 +25,13 @@ public class LiteratureServiceImpl implements LiteratureService {
     }
 
     @Override
+    @Transactional
     public Literature getById(long id) {
         return getById(Literature.class, id);
     }
 
     @Override
+    @Transactional
     public List<Literature> getAll() {
         return getAll(Literature.class);
     }

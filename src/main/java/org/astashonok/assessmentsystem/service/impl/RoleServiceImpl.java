@@ -5,6 +5,7 @@ import org.astashonok.assessmentsystem.service.api.RoleService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,13 +24,14 @@ public class RoleServiceImpl implements RoleService {
         return sessionFactory;
     }
 
-
     @Override
+    @Transactional
     public Role getById(long id) {
         return getById(Role.class, id);
     }
 
     @Override
+    @Transactional
     public List<Role> getAll() {
         return getAll(Role.class);
     }

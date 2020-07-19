@@ -11,36 +11,24 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">4</th>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">5</th>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        <c:forEach items="${resultStatistic}" var="statistic">
+            <tr>
+                <th scope="row">${statistic.question.description}</th>
+                <td>${statistic.correct}</td>
+                <td>
+                    <c:forEach items="${statistic.question.literature}" var="literature">
+                        <span>${literature.description}</span></b>
+                    </c:forEach>
+                </td>
+                <td>
+                    <c:forEach items="${statistic.question.literature}" var="lit">
+                        <c:forEach items="${lit.links}" var="link">
+                            <span>${link.link}</span></b>
+                        </c:forEach>
+                    </c:forEach>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
     <br>
