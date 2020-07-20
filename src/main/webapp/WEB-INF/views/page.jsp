@@ -25,49 +25,50 @@
 </head>
 
 <body>
-<!-- Navigation -->
-<%@include file="shared/navbar.jsp" %>
+<div class="wrapper">
+    <!-- Navigation -->
+    <%@include file="shared/navbar.jsp" %>
 
-<!-- Page Content -->
+    <!-- Page Content -->
+    <div class="text-center content">
+        <c:if test="${clickedHome == true}">
+            <%@include file="home.jsp" %>
+        </c:if>
 
-<c:if test="${clickedHome == true}">
-    <%@include file="home.jsp" %>
-</c:if>
+        <c:if test="${clickedAuthenticate == true}">
+            <%@include file="login.jsp" %>
+        </c:if>
 
-<c:if test="${clickedAuthenticate == true}">
-    <%@include file="login.jsp" %>
-</c:if>
+        <c:if test="${errorCaused == true}">
+            <%@include file="error.jsp" %>
+        </c:if>
 
-<c:if test="${errorCaused == true}">
-    <%@include file="error.jsp" %>
-</c:if>
+        <c:if test="${clickedUser == true}">
+            <%@include file="user/userHome.jsp" %>
+        </c:if>
 
-<c:if test="${clickedUser == true}">
-    <%@include file="user/userHome.jsp" %>
-</c:if>
+        <c:if test="${clickedUserStatistic == true}">
+            <%@include file="user/userStatistic.jsp" %>
+        </c:if>
 
-<c:if test="${clickedUserStatistic == true}">
-    <%@include file="user/userStatistic.jsp" %>
-</c:if>
+        <c:if test="${clickedChooseTest == true}">
+            <%@include file="user/userChoose.jsp" %>
+        </c:if>
 
-<c:if test="${clickedChooseTest == true}">
-    <%@include file="user/userChoose.jsp" %>
-</c:if>
+        <c:if test="${clickedNextTest == true}">
+            <%@include file="user/userTest.jsp" %>
+        </c:if>
 
-<c:if test="${clickedNextTest == true}">
-    <%@include file="user/userTest.jsp" %>
-</c:if>
-
-<c:if test="${clickedResultTest == true}">
-    <%@include file="user/resultTest.jsp" %>
-</c:if>
-
-<!-- Bootstrap core JavaScript -->
-<script src="${contextRoot}/resources/jquery/jquery.slim.min.js"></script>
-<script src="${contextRoot}/resources/jquery/jquery.min.js"></script>
-<script src="${contextRoot}/resources/js/bootstrap.bundle.min.js"></script>
-<script src="${contextRoot}/resources/js/app.js"></script>
-
+        <c:if test="${clickedResultTest == true}">
+            <%@include file="user/resultTest.jsp" %>
+        </c:if>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="${contextRoot}/resources/jquery/jquery.slim.min.js"></script>
+    <script src="${contextRoot}/resources/jquery/jquery.min.js"></script>
+    <script src="${contextRoot}/resources/js/bootstrap.bundle.min.js"></script>
+    <script src="${contextRoot}/resources/js/app.js"></script>
+</div>
 </body>
 
 </html>

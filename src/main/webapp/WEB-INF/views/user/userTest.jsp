@@ -3,10 +3,10 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 mycont">
             <%@include file="../shared/sidebar.jsp" %>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 mycont">
             <%--@elvariable id="answerModel" type="org.astashonok.assessmentsystem.model.Answer"--%>
             <sf:form modelAttribute="answerModel"
                      action="${contextRoot}/user/test"
@@ -22,6 +22,7 @@
                         </label>
                     </div>
                 </c:forEach>
+                <br>
                 <button type="submit" class="btn btn-primary">Следующий</button>
             </sf:form>
         </div>

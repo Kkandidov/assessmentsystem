@@ -2,10 +2,10 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 mycont">
             <%@include file="../shared/sidebar.jsp" %>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 mycont">
             <div class="form-group">
                 <select class="form-control" id="themes" name="themes">
                     <option>Выберите тему</option>

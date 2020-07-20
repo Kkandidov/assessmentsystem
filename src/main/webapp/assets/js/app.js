@@ -16,4 +16,17 @@ $().ready(function () {
         location.href = window.contextRoot + '/user/chosen/test?testId=' + id;
         return false;
     });
+
+    $(function(){
+        window.setTimeout(function(){
+            $('#message').alert('close');
+        },1500);
+    });
+
+    $(function(){
+        window.setTimeout(function(){
+            $('#logout').alert('close');
+        },1500);
+    });
+
 });

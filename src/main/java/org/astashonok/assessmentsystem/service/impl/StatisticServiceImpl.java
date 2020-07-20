@@ -42,9 +42,6 @@ public class StatisticServiceImpl implements StatisticService {
     @Override
     @Transactional
     public List<Statistic> getUserStatisticByUserIdAndDate(long id, Date startDate, Date endDate) {
-        System.out.println("id ---------------- " + id);
-        System.out.println("startDate --------- " + startDate);
-        System.out.println("endDate ----------- " + endDate);
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         RootGraph<?> graph = session.getEntityGraph("graph.statistic");
