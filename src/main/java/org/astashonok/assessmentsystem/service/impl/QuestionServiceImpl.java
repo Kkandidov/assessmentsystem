@@ -1,6 +1,7 @@
 package org.astashonok.assessmentsystem.service.impl;
 
 import org.astashonok.assessmentsystem.model.Question;
+import org.astashonok.assessmentsystem.model.Test;
 import org.astashonok.assessmentsystem.service.api.QuestionService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,22 @@ public class QuestionServiceImpl implements QuestionService {
                 .createQuery("FROM Question WHERE test.id = :id", Question.class)
                 .setParameter("id", id)
                 .getResultList();
+    }
+
+    @Override
+    public Question getQuestionByDescription(String nameQuestion, Test test) {
+        Question question = new Question();
+        for (Question q : getAll()) {
+            if (q.getDescription().equals(nameQuestion)) {
+                question.setDescription(q.getDescription());
+                question.setTest(q.getTest());
+                return question;
+            }
+        }
+
+        question.setDescription(nameQuestion);
+        question.setTest(test);
+        add(question);
+        return question;
     }
 }

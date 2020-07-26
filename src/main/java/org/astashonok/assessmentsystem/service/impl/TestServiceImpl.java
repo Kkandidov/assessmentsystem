@@ -1,6 +1,7 @@
 package org.astashonok.assessmentsystem.service.impl;
 
 import org.astashonok.assessmentsystem.model.Test;
+import org.astashonok.assessmentsystem.model.Topic;
 import org.astashonok.assessmentsystem.service.api.TestService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +42,27 @@ public class TestServiceImpl implements TestService {
     public List<Test> getByTopicId(long id) {
         return sessionFactory
                 .getCurrentSession()
-                .createQuery("FROM Test WHERE topic.id = :id",Test.class)
+                .createQuery("FROM Test WHERE topic.id = :id", Test.class)
                 .setParameter("id", id)
                 .getResultList();
+    }
+
+    @Override
+    public Test createTestByName(String nameTest, Topic topic) {
+        Test newTest = new Test();
+        for (Test test : getAll()) {
+            if (nameTest.equals(test.getName())) {
+                newTest.setId(test.getId());
+                newTest.setName(test.getName());
+                newTest.setDescription(test.getDescription());
+                newTest.setTopic(test.getTopic());
+                return newTest;
+            }
+        }
+        newTest.setName(nameTest);
+        newTest.setDescription(nameTest);
+        newTest.setTopic(topic);
+        add(newTest);
+        return newTest;
     }
 }

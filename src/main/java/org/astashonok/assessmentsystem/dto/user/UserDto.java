@@ -52,7 +52,7 @@ public class UserDto {
                     cabinets.add(new Cabinet("Пользователь", "/user/home"));
                     break;
                 case "ROLE_ADMIN":
-                    cabinets.add(new Cabinet("Администратор", "/admin/home"));
+                    cabinets.add(new Cabinet("Администратор", "/admin"));
                     break;
                 case "ROLE_TUTOR":
                     cabinets.add(new Cabinet("Ментор", "/tutor/home"));

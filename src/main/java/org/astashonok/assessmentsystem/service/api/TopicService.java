@@ -9,4 +9,5 @@ public interface TopicService extends TopicRepository {
 
     Topic getById(long id);
     List<Topic> getAll();
+    Topic createTopicByName(String nameTopic);
 }

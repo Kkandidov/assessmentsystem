@@ -43,4 +43,8 @@ public interface CrudRepository<T extends EntityAbstract> {
                 .createQuery("FROM " + t.getSimpleName())
                 .list();
     }
+
+    default T getByName(Class<T> entityClass, String name){
+        return (T)getBeanToBeAutowired().getCurrentSession().find(entityClass, name);
+    }
 }

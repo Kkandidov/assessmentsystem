@@ -1,6 +1,7 @@
 package org.astashonok.assessmentsystem.model;
 
 import org.astashonok.assessmentsystem.model.abstracts.EntityAbstract;
+import org.astashonok.assessmentsystem.model.enums.RoleName;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -14,6 +15,8 @@ public class User extends EntityAbstract {
     private String lastName;
     private String login;
     private String password;
+    private String nameRole;
+
     @Transient
     private String confirmPassword;
 
@@ -60,6 +63,36 @@ public class User extends EntityAbstract {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public Role setRoleByNameRole(String nameRole){
+        Role roleByNameRole = new Role();
+        if(nameRole.contains("ADMIN")){
+            roleByNameRole.setId(1);
+            roleByNameRole.setName(RoleName.ROLE_ADMIN);
+        }else if(nameRole.contains("USER")){
+            roleByNameRole.setId(3);
+            roleByNameRole.setName(RoleName.ROLE_USER);
+        }else{
+            roleByNameRole.setId(2);
+            roleByNameRole.setName(RoleName.ROLE_TUTOR);
+        }
+        return roleByNameRole;
+    }
+
+    public String getFIO(){
+        return lastName+" "+firstName;
+    }
+
+    public String getNameRole() {
+        if (getRoles() != null) {
+            StringBuilder builder = new StringBuilder();
+            for (Role r : getRoles()) {
+                builder.append(r.getName()).append(" ");
+            }
+            return builder.toString();
+        }
+        return null;
     }
 
     public String getPassword() {

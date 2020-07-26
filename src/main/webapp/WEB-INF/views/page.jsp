@@ -67,6 +67,38 @@
             <%@include file="chooseRole.jsp" %>
         </c:if>
 
+        <c:if test="${clickedAdminStatistic == true}">
+            <%@include file="admin/adminStatistic.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedQuestionStatistic == true}">
+            <%@include file="admin/questionStatistic.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedTestStatistic == true}">
+            <%@include file="admin/testStatistic.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedUserTestStatistic == true}">
+            <%@include file="admin/userTestStatistic.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedAdminPage == true}">
+            <%@include file="admin/admin.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedCreateTest == true}">
+            <%@include file="admin/createTest.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedCreateUserGet == true}">
+            <%@include file="admin/createUser.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedEditPage == true}">
+            <%@include file="admin/editPage.jsp" %>
+        </c:if>
+
 
     </div>
     <!-- Bootstrap core JavaScript -->

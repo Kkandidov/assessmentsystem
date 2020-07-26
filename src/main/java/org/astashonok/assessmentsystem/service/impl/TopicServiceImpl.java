@@ -35,4 +35,22 @@ public class TopicServiceImpl implements TopicService {
     public List<Topic> getAll() {
         return getAll(Topic.class);
     }
+
+    @Override
+    public Topic createTopicByName(String nameTopic) {
+        Topic newTopic = new Topic();
+        for (Topic t:getAll()
+        ) {
+            if(nameTopic.equals(t.getName())){
+                newTopic.setId(t.getId());
+                newTopic.setName(t.getName());
+                newTopic.setDescription(t.getDescription());
+                return newTopic;
+            }
+        }
+        newTopic.setName(nameTopic);
+        newTopic.setDescription(nameTopic);
+        add(newTopic);
+        return newTopic;
+    }
 }
