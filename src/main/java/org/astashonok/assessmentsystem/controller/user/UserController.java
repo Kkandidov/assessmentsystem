@@ -41,8 +41,13 @@ public class UserController {
     }
 
     @GetMapping("user/choose/test")
-    public ModelAndView chooseTest() {
+    public ModelAndView chooseTest(@RequestParam(name = "error", required = false) String error) {
         ModelAndView mv = new ModelAndView("page");
+
+        if (error != null) {
+            mv.addObject("message", "Вы не выбрали тест");
+        }
+
         mv.addObject("title", "Выбор теста");
         mv.addObject("clickedChooseTest", true);
         mv.addObject("topics", topicService.getAll());

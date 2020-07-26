@@ -23,7 +23,7 @@
                 <td>
                     <c:forEach items="${statistic.question.literature}" var="lit">
                         <c:forEach items="${lit.links}" var="link">
-                            <span>${link.link}</span></b>
+                            <span><a href="#">${link.link}</a></span></b>
                         </c:forEach>
                     </c:forEach>
                 </td>

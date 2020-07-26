@@ -17,7 +17,7 @@
         </div>
     </c:if>
     <form class="form-signin" action="${contextRoot}/login" method="POST">
-        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
+        <img class="mb-4" src="${contextRoot}/resources/images/login.jpg" alt="" width="72"
              height="72">
         <h1 class="h3 mb-3 font-weight-normal">Пожалуйста войдите</h1>
         <input type="text" id="inputLogin" class="form-control" name="j_login" placeholder="Логин" required

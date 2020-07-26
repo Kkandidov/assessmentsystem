@@ -26,7 +26,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     @Override
     protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException {
-        String targetUrl = determineTargetUrl(authentication);
+        String targetUrl = "/choose/role";
         if (response.isCommitted()) {
             System.out.println("Can't redirect");
             return;
@@ -34,27 +34,27 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
-    private String determineTargetUrl(Authentication authentication) {
-        String url;
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        Set<String> roles = new HashSet<>();
-
-        for (GrantedAuthority a : authorities) {
-            roles.add(a.getAuthority());
-        }
-
-        if (isTutor(roles)) {
-            url = "/tutor";
-        } else if (isAdmin(roles)) {
-            url = "/admin";
-        } else if (isUser(roles)) {
-            url = "/user";
-        } else {
-            url = "/access-denied";
-        }
-
-        return url;
-    }
+//    private String determineTargetUrl(Authentication authentication) {
+//        String url;
+//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+//        Set<String> roles = new HashSet<>();
+//
+//        for (GrantedAuthority a : authorities) {
+//            roles.add(a.getAuthority());
+//        }
+//
+//        if (isTutor(roles)) {
+//            url = "/tutor";
+//        } else if (isAdmin(roles)) {
+//            url = "/admin";
+//        } else if (isUser(roles)) {
+//            url = "/user";
+//        } else {
+//            url = "/access-denied";
+//        }
+//
+//        return url;
+//    }
 
     private boolean isUser(Set<String> roles) {
         return roles.contains("ROLE_USER");

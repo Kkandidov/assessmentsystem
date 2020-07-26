@@ -13,8 +13,11 @@ $().ready(function () {
 
     $("#testId").on('click', function () {
         let id = $("#testNames option:selected").val();
-        location.href = window.contextRoot + '/user/chosen/test?testId=' + id;
-        return false;
+        if (id === undefined){
+            location.href = window.contextRoot + '/user/choose/test?error';
+        } else {
+            location.href = window.contextRoot + '/user/chosen/test?testId=' + id;
+        }
     });
 
     $(function(){

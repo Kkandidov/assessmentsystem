@@ -34,6 +34,15 @@ public class PageController {
         return mv;
     }
 
+    @GetMapping("/choose/role")
+    public ModelAndView chooseRole(@ModelAttribute("userDto") UserDto userDto) {
+        ModelAndView mv = new ModelAndView("page");
+        mv.addObject("title", "Выбор роли");
+        mv.addObject("clickedChooseRole", true);
+        mv.addObject("cabinets", userDto.getCabinets());
+        return mv;
+    }
+
     @GetMapping("/login")
     public ModelAndView login(@RequestParam(name = "error", required = false) String error,
                               @RequestParam(name = "logout", required = false) String logout) {

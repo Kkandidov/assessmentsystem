@@ -62,6 +62,12 @@
         <c:if test="${clickedResultTest == true}">
             <%@include file="user/resultTest.jsp" %>
         </c:if>
+
+        <c:if test="${clickedChooseRole == true}">
+            <%@include file="chooseRole.jsp" %>
+        </c:if>
+
+
     </div>
     <!-- Bootstrap core JavaScript -->
     <script src="${contextRoot}/resources/jquery/jquery.slim.min.js"></script>

@@ -6,11 +6,11 @@
             <%@include file="../shared/sidebar.jsp" %>
         </div>
         <div class="col-lg-6 mycont">
-            <button type="button" class="btn btn-success" onclick="location.href='${contextRoot}/user/choose/test'">Выбор темы
+            <button type="button" class="btn btn-success b" onclick="location.href='${contextRoot}/user/choose/test'">Выбор темы
                 и теста
             </button>
             <br>
-            <button type="button" class="btn btn-success" onclick="location.href='${contextRoot}/user/statistic'">Личная
+            <button type="button" class="btn btn-success b" onclick="location.href='${contextRoot}/user/statistic'">Личная
                 статисктика
             </button>
         </div>

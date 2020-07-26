@@ -14,14 +14,16 @@
                 <div class="form-group">
                     <input type="text" readonly class="form-control-plaintext" value="${question.description}">
                 </div>
-                <c:forEach items="${answers}" var="answer">
-                    <div class="form-check">
-                        <sf:radiobutton class="form-check-input" path="id" id="${answer.id}" value="${answer.id}"/>
-                        <label class="form-check-label" for="${answer.id}">
-                                ${answer.description}
-                        </label>
-                    </div>
-                </c:forEach>
+                <div class="answers">
+                    <c:forEach items="${answers}" var="answer">
+                        <div class="form-check">
+                            <sf:radiobutton class="form-check-input" path="id" id="${answer.id}" value="${answer.id}"/>
+                            <label class="form-check-label" for="${answer.id}">
+                                    ${answer.description}
+                            </label>
+                        </div>
+                    </c:forEach>
+                </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Следующий</button>
             </sf:form>

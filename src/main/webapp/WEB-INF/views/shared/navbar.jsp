@@ -17,15 +17,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${contextRoot}/login">Войти</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Зарегистрироваться</a>
-                    </li>
                 </security:authorize>
-                <security:authorize access="isAuthenticated()">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${contextRoot}/logout">Выйти</a>
-                    </li>
-                </security:authorize>
+                <ul class="navbar-nav ml-right">
+                    <security:authorize access="isAuthenticated()">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    ${userDto.fullName}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="${contextRoot}/logout">Выйти</a>
+                            </div>
+                        </div>
+                    </security:authorize>
+                </ul>
             </ul>
         </div>
     </div>
