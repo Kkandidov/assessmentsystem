@@ -13,23 +13,33 @@ $().ready(function () {
 
     $("#testId").on('click', function () {
         let id = $("#testNames option:selected").val();
-        if (id === undefined){
+        if (id === undefined) {
             location.href = window.contextRoot + '/user/choose/test?error';
         } else {
             location.href = window.contextRoot + '/user/chosen/test?testId=' + id;
         }
     });
 
-    $(function(){
-        window.setTimeout(function(){
+    $(function () {
+        window.setTimeout(function () {
             $('#message').alert('close');
-        },1500);
+        }, 1500);
     });
 
-    $(function(){
-        window.setTimeout(function(){
+    $(function () {
+        window.setTimeout(function () {
             $('#logout').alert('close');
-        },1500);
+        }, 1500);
     });
+
+    switch (menu) {
+        case 'Домашняя':
+            $('#mainBar').addClass('active');
+            break;
+        case 'Аутентификация':
+            $('#authenticationBar').addClass('active');
+            break;
+    }
+
 
 });

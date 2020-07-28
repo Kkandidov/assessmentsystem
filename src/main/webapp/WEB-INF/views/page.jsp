@@ -13,6 +13,7 @@
     <title>${title}</title>
 
     <script>
+        window.menu = '${title}';
         window.contextRoot = '${contextRoot}'
     </script>
 
