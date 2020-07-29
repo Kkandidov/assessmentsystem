@@ -85,7 +85,6 @@ public class PageController {
                 }
                 testDto.iterator().clearData();
             }
-
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
         return "redirect:/login?logout";

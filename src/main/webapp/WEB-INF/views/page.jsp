@@ -101,6 +101,45 @@
         </c:if>
 
 
+        <c:if test="${clickedUserTestStatistic == true}">
+            <%@include file="admin/userTestStatistic.jsp" %>
+        </c:if>
+
+
+        <%--TUTOR--%>
+        <c:if test="${clickedTutorPage == true}">
+            <%@include file="tutor/tutor.jsp" %>
+        </c:if>
+
+<%--        <c:if test="${clickedTutorCreateQuestion == true}">--%>
+<%--            <%@include file="tutor/createTest.jsp" %>--%>
+<%--        </c:if>--%>
+
+        <c:if test="${clickedTutorViewQuestion == true}">
+            <%@include file="tutor/viewQuestion.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedTutorEditQuestion == true}">
+            <%@include file="tutor/editQuestion.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedTutorSelectStatistic == true}">
+            <%@include file="tutor/statistic/selectStatistic.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedTutorTestStatistic == true}">
+            <%@include file="tutor/statistic/test-statistic.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedTutorUserStatistic == true}">
+            <%@include file="tutor/statistic/user-statistic.jsp" %>
+        </c:if>
+
+<%--        <c:if test="${clickedTutorAnswerForm == true}">--%>
+<%--            <%@include file="tutor/answerForm.jsp" %>--%>
+<%--        </c:if>--%>
+
+
     </div>
     <!-- Bootstrap core JavaScript -->
     <script src="${contextRoot}/resources/jquery/jquery.slim.min.js"></script>
