@@ -17,13 +17,13 @@
                 <td>${statistic.correct}</td>
                 <td>
                     <c:forEach items="${statistic.question.literature}" var="literature">
-                        <span>${literature.description}</span></b>
+                        <span>${literature.description}</span></br>
                     </c:forEach>
                 </td>
                 <td>
                     <c:forEach items="${statistic.question.literature}" var="lit">
                         <c:forEach items="${lit.links}" var="link">
-                            <span><a href="#">${link.link}</a></span></b>
+                            <span><a href="#">${link.link}</a></span></br>
                         </c:forEach>
                     </c:forEach>
                 </td>

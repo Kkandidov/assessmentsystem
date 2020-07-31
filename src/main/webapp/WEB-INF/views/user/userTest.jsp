@@ -12,9 +12,11 @@
                      action="${contextRoot}/user/test"
                      method="POST">
                 <div class="form-group">
-                    <input type="text" readonly class="form-control-plaintext" value="${question.description}">
+                    <div class="leftal">
+                        <p><h6>${question.description}</h6></p>
+                    </div>
                 </div>
-                <div class="answers">
+                <div class="leftal">
                     <c:forEach items="${answers}" var="answer">
                         <div class="form-check">
                             <sf:radiobutton class="form-check-input" path="id" id="${answer.id}" value="${answer.id}"/>

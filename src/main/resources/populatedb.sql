@@ -13,51 +13,187 @@ SET FOREIGN_KEY_CHECKS=1;
 
 -- populate topic table
 INSERT INTO `topic`(`name`, `description`)
-VALUES('Topic 1', 'Description Topic 1');
+VALUES('Математика', 'Математика');
 INSERT INTO `topic`(`name`, `description`)
-VALUES('Topic 2', 'Description Topic 2');
-INSERT INTO `topic`(`name`, `description`)
-VALUES('Topic 3', 'Description Topic 3');
-INSERT INTO `topic`(`name`, `description`)
-VALUES('Topic 4', 'Description Topic 4');
-INSERT INTO `topic`(`name`, `description`)
-VALUES('Topic 5', 'Description Topic 5');
+VALUES('Программирование', 'Программирование');
 
 -- populate test table
 INSERT INTO `test`(`name`, `description`, `topicId`)
-VALUES('Test 1', 'Description Test 1', 1);
+VALUES('Уравнения', 'Алгебраические уравнения', 1);
 INSERT INTO `test`(`name`, `description`, `topicId`)
-VALUES('Test 2', 'Description Test 2', 2);
+VALUES('Комбинаторика', 'Комбинаторика', 1);
 INSERT INTO `test`(`name`, `description`, `topicId`)
-VALUES('Test 3', 'Description Test 3', 3);
+VALUES('Многопоточность', 'Многопоточность', 2);
 INSERT INTO `test`(`name`, `description`, `topicId`)
-VALUES('Test 4', 'Description Test 4', 4);
-INSERT INTO `test`(`name`, `description`, `topicId`)
-VALUES('Test 5', 'Description Test 5', 5);
+VALUES('Коллекции', 'Коллекции', 2);
 
 -- -- populate question table
 INSERT INTO `question`(`description`, `testId`)
-VALUES('Question 1', 1);
+VALUES('Какое из приведенных равенств является уравнением?', 1);
 INSERT INTO `question`(`description`, `testId`)
-VALUES('Question 2', 2);
+VALUES('Какое из чисел является корнем уравнения y+322=351?', 1);
 INSERT INTO `question`(`description`, `testId`)
-VALUES('Question 3', 3);
+VALUES('Решите уравнение   x−137=215?', 1);
 INSERT INTO `question`(`description`, `testId`)
-VALUES('Question 4', 4);
+VALUES('Решите уравнение 400−y=275?', 1);
+
 INSERT INTO `question`(`description`, `testId`)
-VALUES('Question 5', 5);
+VALUES('Сколькими способами могут разместиться 7 человек в салоне автобуса на семи свободных местах?', 2);
+INSERT INTO `question`(`description`, `testId`)
+VALUES('В пассажирском поезде 8 вагонов. Сколькими способами можно рассадить в поезде 3 человека, при условии, что все они должны ехать в различных вагонах?', 2);
+INSERT INTO `question`(`description`, `testId`)
+VALUES('Сколько существует вариантов выбора двух чисел из восьми?', 2);
+INSERT INTO `question`(`description`, `testId`)
+VALUES('Сколькими способами можно переставить буквы в слове \"луна\"?', 2);
+
+INSERT INTO `question`(`description`, `testId`)
+VALUES('В какое состояние переходит поток после вызова метода start()?', 3);
+INSERT INTO `question`(`description`, `testId`)
+VALUES('В каком состоянии находится поток, если он создан и не запущен?', 3);
+INSERT INTO `question`(`description`, `testId`)
+VALUES('Какой метод интерфейса Runnable должен быть реализован всеми потоками?', 3);
+INSERT INTO `question`(`description`, `testId`)
+VALUES('Какой метод надо вызвать, чтобы запустить поток?', 3);
+
+INSERT INTO `question`(`description`, `testId`)
+VALUES('Может ли класс из Collection Framework быть неотсортированным и упорядоченным?', 4);
+INSERT INTO `question`(`description`, `testId`)
+VALUES('Что должно вернуть выражение x.equals(null) в соответствии с контрактом по написанию этого метода?', 4);
+INSERT INTO `question`(`description`, `testId`)
+VALUES('Какой из следующих методов используется для получения набора, содержащего все ключи, используемые в карте?', 4);
+INSERT INTO `question`(`description`, `testId`)
+VALUES('Какой интерфейс предоставляет возможность хранить объекты в виде пар ключ-значение?', 4);
 
 -- populate answer table
 INSERT INTO `answer`(`description`, `correct`, `questionId`)
-VALUES('Answer 1', false, 1);
+VALUES('22+5=27', false, 1);
 INSERT INTO `answer`(`description`, `correct`, `questionId`)
-VALUES('Answer 2', true, 2);
+VALUES('27-x=5', true, 1);
 INSERT INTO `answer`(`description`, `correct`, `questionId`)
-VALUES('Answer 3', true, 3);
+VALUES('27-5=22', false, 1);
 INSERT INTO `answer`(`description`, `correct`, `questionId`)
-VALUES('Answer 4', true, 4);
+VALUES('5=27-22', false, 1);
+
 INSERT INTO `answer`(`description`, `correct`, `questionId`)
-VALUES('Answer 5', false, 5);
+VALUES('683', false, 2);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES('19', false, 2);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES('9', false, 2);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES('29', true, 2);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('352', true, 3);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('362', false, 3);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('267', false, 3);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('458', false, 3);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('655', false, 4);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('46', false, 4);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('125', true, 4);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('245', false, 4);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('720', true, 5);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('3600', false, 5);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('36', false, 5);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('18', false, 5);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('1024', false, 6);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('3096', false, 6);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('9', false, 6);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('36', true, 6);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('28', true, 7);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('56', false, 7);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('73', false, 7);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('23', false, 7);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('12', true, 8);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('14', false, 8);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('6', false, 8);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('4', false, 8);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('Runnable', true, 9);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('New', false, 9);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('Dead', false, 9);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('Runnable', false, 10);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('New', true, 10);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('Dead', false, 10);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('start()', false, 11);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('run()', true, 11);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('throw()', false, 11);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('start()', true, 12);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('run()', false, 12);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('throw()', false, 12);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('да', true, 13);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('нет', false, 13);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('null', false, 14);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('NullPointerException', false, 14);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('не скомпилируется', false, 14);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('false', true, 14);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('getAll()', false, 15);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('getKeys()', true, 15);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('setKeys()', false, 15);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('getMap()', false, 15);
+
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('Map', true, 16);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('Set', false, 16);
+INSERT INTO `answer`(`description`, `correct`, `questionId`)
+VALUES ('List', false, 16);
 
 -- populate user table (https://bcrypt-generator.com/)
 INSERT INTO `user`(`firstName`, `lastName`, `login`, `password`)
@@ -68,7 +204,7 @@ INSERT INTO `user`(`firstName`, `lastName`, `login`, `password`)
 VALUES('Tutor', 'Tutorovic', 'tutor', '$2y$12$kpa.v1Lq76nAVtDLwYls/Oya6wFzTvU9Vnqcwpj2kmPQlMnV0Z/Ea');
 INSERT INTO `user`(`firstName`, `lastName`, `login`, `password`)
 -- password = userPassword
-VALUES('User', 'Userovic', 'user', '$2y$12$WAeUHsiu26Hu1Yi35JuN.e4JKc6wOrtA//cqKn/kB/lzDz5uDx6Xe');
+VALUES('Константин', 'Асташонок', 'user', '$2y$12$WAeUHsiu26Hu1Yi35JuN.e4JKc6wOrtA//cqKn/kB/lzDz5uDx6Xe');
 
 -- populate role table
 INSERT INTO `role`(`name`)
@@ -85,39 +221,83 @@ INSERT INTO `userRole`(`userId`, `roleId`)
 VALUES(2, 2);
 INSERT INTO `userRole`(`userId`, `roleId`)
 VALUES(3, 3);
+INSERT INTO `userRole`(`userId`, `roleId`)
+VALUES(3, 1);
+
 
 -- populate statistic table
-INSERT INTO `statistic`(`date`, `correct`, `questionId`, `userId`)
-VALUES('2020-01-12 10:37:22', false, 1, 3);
-INSERT INTO `statistic`(`date`, `correct`, `questionId`, `userId`)
-VALUES('2020-01-12 10:38:22', true, 2, 3);
-INSERT INTO `statistic`(`date`, `correct`, `questionId`, `userId`)
-VALUES('2020-01-12 10:39:22', false, 3, 3);
-INSERT INTO `statistic`(`date`, `correct`, `questionId`, `userId`)
-VALUES('2020-01-12 10:40:22', true, 4, 3);
-INSERT INTO `statistic`(`date`, `correct`, `questionId`, `userId`)
-VALUES('2020-01-12 10:41:22', false, 5, 3);
+
 
 -- populate literature table
 INSERT INTO `literature`(`description`, `questionId`)
-VALUES('Literature 1', 1);
+VALUES('Литература 1', 1);
 INSERT INTO `literature`(`description`, `questionId`)
-VALUES('Literature 2', 2);
+VALUES('Литература 2', 2);
 INSERT INTO `literature`(`description`, `questionId`)
-VALUES('Literature 3', 3);
+VALUES('Литература 3', 3);
 INSERT INTO `literature`(`description`, `questionId`)
-VALUES('Literature 4', 4);
+VALUES('Литература 4', 4);
 INSERT INTO `literature`(`description`, `questionId`)
-VALUES('Literature 4', 5);
+VALUES('Литература 5', 5);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 6', 6);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 7', 7);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 8', 8);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 9', 9);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 10', 10);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 11', 11);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 12', 12);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 13', 13);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 14', 14);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 15', 15);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 16', 16);
+INSERT INTO `literature`(`description`, `questionId`)
+VALUES('Литература 17', 9);
+
 
 -- populate link table
 INSERT INTO `link`(`link`, `literatureId`)
-VALUES('Link 1', 1);
+VALUES('Cсылка 1', 1);
 INSERT INTO `link`(`link`, `literatureId`)
-VALUES('Link 2', 2);
+VALUES('Cсылка 2', 2);
 INSERT INTO `link`(`link`, `literatureId`)
-VALUES('Link 3', 3);
+VALUES('Cсылка 3', 3);
 INSERT INTO `link`(`link`, `literatureId`)
-VALUES('Link 4', 4);
+VALUES('Cсылка 4', 4);
 INSERT INTO `link`(`link`, `literatureId`)
-VALUES('Link 5', 5);
+VALUES('Cсылка 5', 5);
+
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 6', 6);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 7', 7);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 8', 8);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 9', 9);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 10', 10);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 11', 11);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 12', 12);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 13', 13);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 14', 14);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 15', 15);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 16', 16);
+INSERT INTO `link`(`link`, `literatureId`)
+VALUES('Cсылка 17', 9);
