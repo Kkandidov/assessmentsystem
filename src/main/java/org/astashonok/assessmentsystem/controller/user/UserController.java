@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes({"testDto", "userDto"})
@@ -136,7 +137,15 @@ public class UserController {
         Date startDate = new Date(testDto.getStartDate().getTime() - 1000);
         Date endDate = new Date(testDto.getEndDate().getTime() + 1000);
 
-        mv.addObject("resultStatistic", statisticService.getUserStatisticByUserIdAndDate(id, startDate, endDate));
+        List<Statistic> fullStatistic = statisticService.getUserStatisticByUserIdAndDate(id, startDate, endDate);
+        List<Statistic> result = fullStatistic
+                .stream()
+                .filter(s -> !s.isCorrect())
+                .collect(Collectors.toList());
+
+        mv.addObject("resultStatistic", result);
+        mv.addObject("resultInPercent"
+                , ((fullStatistic.size() - result.size()) * 1. / fullStatistic.size()) * 100);
         testDto.iterator().clearData();
         return mv;
     }
