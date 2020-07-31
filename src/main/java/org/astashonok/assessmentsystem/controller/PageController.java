@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,7 +70,7 @@ public class PageController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response,
+    public String logout(HttpServletRequest request, HttpServletResponse response, SessionStatus status,
                          @ModelAttribute("userDto") UserDto userDto,
                          @ModelAttribute("testDto") TestDto testDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -86,6 +87,7 @@ public class PageController {
                 testDto.iterator().clearData();
             }
             new SecurityContextLogoutHandler().logout(request, response, authentication);
+            status.setComplete();
         }
         return "redirect:/login?logout";
     }

@@ -5,7 +5,6 @@
       <configuration>
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
-          <root url="file://$MODULE_DIR$/src/test/resources" relative="/resources" />
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
@@ -14,7 +13,20 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="HibernateConfig" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/org/astashonok/assessmentsystem/config/HibernateConfig.java</file>
+        </fileset>
+        <fileset id="fileset2" name="WebMvcConfig" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/org/astashonok/assessmentsystem/config/WebMvcConfig.java</file>
+        </fileset>
+        <fileset id="fileset3" name="WebAppConfig" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/org/astashonok/assessmentsystem/config/WebAppConfig.java</file>
+        </fileset>
+        <fileset id="fileset4" name="SecurityConfig" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/org/astashonok/assessmentsystem/config/SecurityConfig.java</file>
+        </fileset>
+      </configuration>
     </facet>
     <facet type="hibernate" name="Hibernate">
       <configuration>
