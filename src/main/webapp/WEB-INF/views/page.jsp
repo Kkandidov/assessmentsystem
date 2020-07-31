@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,16 +109,16 @@
             <%@include file="tutor/tutor.jsp" %>
         </c:if>
 
-<%--        <c:if test="${clickedTutorCreateQuestion == true}">--%>
-<%--            <%@include file="tutor/createTest.jsp" %>--%>
-<%--        </c:if>--%>
+        <c:if test="${clickedTutorCreateTest == true}">
+            <%@include file="tutor/createTest.jsp" %>
+        </c:if>
 
         <c:if test="${clickedTutorViewQuestion == true}">
-            <%@include file="tutor/viewQuestion.jsp" %>
+            <%@include file="tutor/tutorQuestions.jsp" %>
         </c:if>
 
         <c:if test="${clickedTutorEditQuestion == true}">
-            <%@include file="tutor/editQuestion.jsp" %>
+            <%@include file="tutor/tutorAnswers.jsp" %>
         </c:if>
 
         <c:if test="${clickedTutorSelectStatistic == true}">
@@ -135,9 +133,13 @@
             <%@include file="tutor/statistic/user-statistic.jsp" %>
         </c:if>
 
-<%--        <c:if test="${clickedTutorAnswerForm == true}">--%>
-<%--            <%@include file="tutor/answerForm.jsp" %>--%>
-<%--        </c:if>--%>
+        <c:if test="${clickedTutorAnswerForm == true}">
+            <%@include file="tutor/answerForm.jsp" %>
+        </c:if>
+
+        <c:if test="${clickedTutorTestPage == true}">
+            <%@include file="tutor/tutorTest.jsp" %>
+        </c:if>
 
 
     </div>
@@ -146,6 +148,7 @@
     <script src="${contextRoot}/resources/jquery/jquery.min.js"></script>
     <script src="${contextRoot}/resources/js/bootstrap.bundle.min.js"></script>
     <script src="${contextRoot}/resources/js/app.js"></script>
+    <script src="${contextRoot}/resources/js/tutor.js"></script>
 </div>
 </body>
 

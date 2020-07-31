@@ -57,7 +57,6 @@ public class QuestionServiceImpl implements QuestionService {
                 return question;
             }
         }
-
         question.setDescription(nameQuestion);
         question.setTest(test);
         add(question);
