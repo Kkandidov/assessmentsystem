@@ -1,11 +1,9 @@
 package org.astashonok.assessmentsystem.controller.tutor.test;
 
 import org.astashonok.assessmentsystem.model.Answer;
+import org.astashonok.assessmentsystem.model.Literature;
 import org.astashonok.assessmentsystem.model.Question;
-import org.astashonok.assessmentsystem.service.api.AnswerService;
-import org.astashonok.assessmentsystem.service.api.QuestionService;
-import org.astashonok.assessmentsystem.service.api.TestService;
-import org.astashonok.assessmentsystem.service.api.TopicService;
+import org.astashonok.assessmentsystem.service.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +17,18 @@ public class TutorTestWorkController {
     private TopicService topicService;
     private TestService testService;
     private AnswerService answerService;
+    private LiteratureService literatureService;
+    private LinkService linkService;
 
+    @Autowired
+    public void setLiteratureService(LiteratureService literatureService) {
+        this.literatureService = literatureService;
+    }
+
+    @Autowired
+    public void setLinkService(LinkService linkService) {
+        this.linkService = linkService;
+    }
 
     @Autowired
     public void setAnswerService(AnswerService answerService) {
@@ -72,8 +81,7 @@ public class TutorTestWorkController {
         return "redirect:/tutor/test/" + testId;
     }
 
-    //editQuestion /tutor/test/${test.id}/${question.id}
-    @GetMapping("/test/{test}/edit/{question}")
+    @GetMapping("/test/{test}/answer/{question}")
     public String editQuestion(@PathVariable("test") Long testId,
                                @PathVariable("question") Long questId,
                                Model model){
@@ -88,10 +96,24 @@ public class TutorTestWorkController {
         return "page";
     }
 
+
+    @PostMapping("/test/question/update")
+    public String updateQuestion(@RequestParam("test") Long testId,
+                                 @RequestParam("question") Long questId,
+                                 @RequestParam("question-desc") String questDesc){
+
+        Question question = questionService.getById(questId);
+        question.setDescription(questDesc);
+        questionService.update(question);
+
+        return "redirect:/tutor/test/" + testId;
+    }
+
+
     //deleteQuestion
     @GetMapping("/test/{test}/delete/{question}")
     public String deleteQuestion(@PathVariable("test") Long testId,
-                               @PathVariable("question") Long questId){
+                                 @PathVariable("question") Long questId){
 
         questionService.delete(questionService.getById(questId));
         return "redirect:/tutor/test/" + testId;
@@ -112,7 +134,7 @@ public class TutorTestWorkController {
 
         answerService.add(answer);
 
-        return "redirect:/tutor/test/" + testId + "/edit/" + questId;
+        return "redirect:/tutor/test/" + testId + "/answer/" + questId;
     }
     //editAnswer
 
@@ -125,6 +147,19 @@ public class TutorTestWorkController {
                                  @RequestParam("answer") Long ansId){
 
         answerService.delete(answerService.getById(ansId));
-        return "redirect:/tutor/test/" + testId + "/edit/" + questId;
+        return "redirect:/tutor/test/" + testId + "/answer/" + questId;
+    }
+
+    @PostMapping("/test/update-answer")
+    public String updateAnswer(@RequestParam("test") Long testId,
+                               @RequestParam("question") Long questId,
+                               @RequestParam("answer") Long ansId,
+                               @RequestParam("answer-desc") String answerDesc){
+
+        Answer answer = answerService.getById(ansId);
+        answer.setDescription(answerDesc);
+        answerService.update(answer);
+
+        return "redirect:/tutor/test/" + testId + "/answer/" + questId;
     }
 }

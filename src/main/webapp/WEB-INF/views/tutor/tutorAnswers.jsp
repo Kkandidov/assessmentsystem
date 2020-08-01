@@ -14,9 +14,7 @@
         <tbody>
         <c:forEach items="${answers}" var="answer">
             <!-- construct an "update" link with customer id -->
-            <%--            <c:url var="updateLink" value="/tutor/update-answer">--%>
-            <%--                <c:param name="id" value="${answer.id}"/>--%>
-            <%--            </c:url>--%>
+            <%--            <c:url var="updateLink" value="/tutor/test/update-answer"/>--%>
 
             <c:url var="deleteLink" value="/tutor/test/delete-answer">
                 <c:param name="answer" value="${answer.id}"/>
@@ -25,12 +23,21 @@
             </c:url>
 
             <tr>
-                <td>${answer.description}</td>
-                <td>${answer.correct}</td>
-                <td>
-                    <a href="${updateLink}">Изменить</a> | <a methods="post" href="${deleteLink}"
-                                                              onclick="if (!(confirm('Точно хотите удалить?'))) return false">Удалить</a>
-                </td>
+                <form:form action="/tutor/test/update-answer" method="post">
+                    <td>
+                        <input type="hidden" name="test" value="${testId}">
+                        <input type="hidden" name="question" value="${question.id}">
+                        <input type="hidden" name="answer" value="${answer.id}">
+                        <input required type="text" name="answer-desc" class="input-group input-group-text"
+                               value="${answer.description}">
+                    </td>
+                    <td>${(answer.correct) ? "Да" : "Нет"}</td>
+                    <td>
+                        <button type="submit" class="btn btn-outline-secondary">Изменить</button>
+                        <a href="${deleteLink}" class="btn btn-danger"
+                           onclick="if (!(confirm('Точно хотите удалить?'))) return false">Удалить</a>
+                    </td>
+                </form:form>
             </tr>
         </c:forEach>
         </tbody>
@@ -39,10 +46,10 @@
     <form:form action="/tutor/test/${testId}/edit/${question.id}/add" method="post">
 
         <label>Ответ: </label>
-        <input type="text" name="answer-desc" cssClass="css-input"/>
+        <input required type="text" name="answer-desc" cssClass="css-input"/>
 
-        <label>Корректен? </label>
-<%--        <input type="text" name="isCorrect" cssClass="css-input"/>--%>
+        <label>Верный?</label>
+        <%--        <input type="text" name="isCorrect" cssClass="css-input"/>--%>
 
         <select class="css-input" name="isCorrect">
             <option value="false">Нет</option>
@@ -52,7 +59,7 @@
         <button type="submit" class="btn btn-success b">Добавить ответ</button>
     </form:form>
 
-    <input type="button" class="btn btn-danger b" value="Вернуться назад"
+    <input type="button" class="btn btn-info mt-3" value="Вернуться назад"
            onclick="window.location.href='/tutor/test/${testId}'; return false;"/>
 </div>
 

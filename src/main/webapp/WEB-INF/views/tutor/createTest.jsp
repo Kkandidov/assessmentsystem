@@ -25,8 +25,8 @@
                         </c:forEach>
                     </select>
                     <br>
-                    <input name="test-name" type="text" class="form-control" placeholder="Название теста"/>
-                    <textarea name="test-description" type="text" class="form-control mt-3" placeholder="Описание теста"></textarea>
+                    <input required name="test-name" type="text" class="form-control" placeholder="Название теста"/>
+                    <textarea required name="test-description" type="text" class="form-control mt-3" placeholder="Описание теста"></textarea>
                 </div>
 
                 <input type="submit" class="btn btn-success b" value="Создать тест">
