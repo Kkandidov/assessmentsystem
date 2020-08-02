@@ -9,23 +9,24 @@
         <div class="col-lg-6 mycont">
             <form action="${contextRoot}/saveNewQuestion">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Название темы" id="topic" name="topic">
+                    <input type="text" class="form-control" placeholder="Название темы" list="topics" id="topic" name="topic">
                     <datalist id="topics" name="nameTopic">
                         <c:forEach items="${topics}" var="topic">
-                            <option value="${topic}"/>
+                            <option value="${topic}">
                         </c:forEach>
                     </datalist>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Название теста" id="test" name="test">
-                    <datalist id="tests">
+                    <input type="text" class="form-control" placeholder="Название теста" list="testts" id="testt" name="testt">
+                    <datalist id="testts">
                         <c:forEach items="${tests}" var="test">
                             <option value="${test}"/>
                         </c:forEach>
                     </datalist>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Название вопроса" id="question" name="question">
+                    <input type="text" class="form-control" placeholder="Название вопроса" list="questions" id="question"
+                           name="question">
                     <datalist id="questions">
                         <c:forEach items="${questions}" var="question">
                             <option value="${question}"/>

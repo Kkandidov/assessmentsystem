@@ -100,12 +100,6 @@
             <%@include file="admin/editPage.jsp" %>
         </c:if>
 
-
-        <c:if test="${clickedUserTestStatistic == true}">
-            <%@include file="admin/userTestStatistic.jsp" %>
-        </c:if>
-
-
         <%--TUTOR--%>
         <c:if test="${clickedTutorPage == true}">
             <%@include file="tutor/tutor.jsp" %>
