@@ -84,7 +84,7 @@ public class User extends EntityAbstract {
         return lastName+" "+firstName;
     }
 
-    public String getNameRole() {
+    public String getNameRoles() {
         if (getRoles() != null) {
             StringBuilder builder = new StringBuilder();
             for (Role r : getRoles()) {
@@ -93,6 +93,14 @@ public class User extends EntityAbstract {
             return builder.toString();
         }
         return null;
+    }
+
+    public String getNameRole() {
+        return nameRole;
+    }
+
+    public void setNameRole(String nameRole) {
+        this.nameRole = nameRole;
     }
 
     public String getPassword() {

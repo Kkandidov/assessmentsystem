@@ -10,7 +10,7 @@
             <%--@elvariable id="user" type="org.astashonok.assessmentsystem.model.User"--%>
             <form:form method="post" action="${contextRoot}/admin/createUser" name="user" modelAttribute="user">
                 <div class="form-group">
-                    <form:select path="nameRole" class="form-control">
+                    <form:select path="nameRoles" class="form-control">
                         <form:options items="${allRoles}"/>
                     </form:select>
                 </div>
