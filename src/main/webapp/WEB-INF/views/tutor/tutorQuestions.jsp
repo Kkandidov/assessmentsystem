@@ -17,7 +17,7 @@
         <tbody>
         <c:forEach items="${questions}" var="question">
             <tr>
-                <form:form action="/tutor/test/question/update" method="post">
+                <form:form action="${contextRoot}/tutor/test/question/update" method="post">
                     <td>
                         <input type="hidden" name="test" value="${test.id}">
                         <input type="hidden" name="question" value="${question.id}">
@@ -26,15 +26,15 @@
                                value="${question.description}">
                     </td>
                     <td>
-                        <a href="/tutor/test/${test.id}/edit/${question.id}/literature"
+                        <a href="${contextRoot}/tutor/test/${test.id}/edit/${question.id}/literature"
                            class="btn btn-light">Литература</a>
                     </td>
                     <td>
-                        <a href="/tutor/test/${test.id}/answer/${question.id}" class="btn btn-light">Ответы</a>
+                        <a href="${contextRoot}/tutor/test/${test.id}/answer/${question.id}" class="btn btn-light">Ответы</a>
                     </td>
                     <td>
                         <button type="submit" class="btn btn-outline-secondary"> Изменить</button>
-                        <a href="/tutor/test/${test.id}/delete/${question.id}" class="btn btn-danger"> Удалить</a>
+                        <a href="${contextRoot}/tutor/test/${test.id}/delete/${question.id}" class="btn btn-danger"> Удалить</a>
                     </td>
                 </form:form>
             </tr>
@@ -42,7 +42,7 @@
         </tbody>
     </table>
 
-    <form:form action="/tutor/test/${test.id}/add" method="post">
+    <form:form action="${contextRoot}/tutor/test/${test.id}/add" method="post">
 
         <label>Вопрос: </label>
         <input required type="text" name="quest-name" class=""/>
