@@ -4,7 +4,6 @@
 <div class="container ">
 
     <div>
-
         <select class="form-control mb-3" id="topics">
             <option value="" disabled selected>Выберите тему</option>
             <c:forEach items="${topics}" var="topic">

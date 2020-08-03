@@ -13,8 +13,6 @@
         </thead>
         <tbody>
         <c:forEach items="${answers}" var="answer">
-            <!-- construct an "update" link with customer id -->
-            <%--            <c:url var="updateLink" value="/tutor/test/update-answer"/>--%>
 
             <c:url var="deleteLink" value="/tutor/test/delete-answer">
                 <c:param name="answer" value="${answer.id}"/>
@@ -49,7 +47,6 @@
         <input required type="text" name="answer-desc" cssClass="css-input"/>
 
         <label>Верный?</label>
-        <%--        <input type="text" name="isCorrect" cssClass="css-input"/>--%>
 
         <select class="css-input" name="isCorrect">
             <option value="false">Нет</option>
