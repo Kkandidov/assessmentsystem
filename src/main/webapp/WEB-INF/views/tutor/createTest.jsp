@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-lg-6 mycont">
-            <form:form action="/tutor/createTest" method="post">
+            <form:form action="${contextRoot}/tutor/createTest" method="post">
                 <p id="success">${message}</p>
                 <script>
                     setTimeout(function () {
@@ -26,12 +26,13 @@
                     </select>
                     <br>
                     <input required name="test-name" type="text" class="form-control" placeholder="Название теста"/>
-                    <textarea required name="test-description" type="text" class="form-control mt-3" placeholder="Описание теста"></textarea>
+                    <textarea required name="test-description" type="text" class="form-control mt-3" placeholder="Описание теста">
+                    </textarea>
                 </div>
 
                 <input type="submit" class="btn btn-success b" value="Создать тест">
 
-                <button type="button" class="btn btn-danger " onclick="location.href='/tutor'">
+                <button type="button" class="btn btn-danger " onclick="location.href='${contextRoot}/tutor'">
                     На главную
                 </button>
 
