@@ -13,17 +13,15 @@
         </thead>
         <tbody>
         <c:forEach items="${answers}" var="answer">
-            <!-- construct an "update" link with customer id -->
-            <%--            <c:url var="updateLink" value="/tutor/test/update-answer"/>--%>
 
-            <c:url var="deleteLink" value="/tutor/test/delete-answer">
+            <c:url var="deleteLink" value="${contextRoot}/tutor/test/delete-answer">
                 <c:param name="answer" value="${answer.id}"/>
                 <c:param name="test" value="${testId}"/>
                 <c:param name="question" value="${question.id}"/>
             </c:url>
 
             <tr>
-                <form:form action="/tutor/test/update-answer" method="post">
+                <form:form action="${contextRoot}/tutor/test/update-answer" method="post">
                     <td>
                         <input type="hidden" name="test" value="${testId}">
                         <input type="hidden" name="question" value="${question.id}">

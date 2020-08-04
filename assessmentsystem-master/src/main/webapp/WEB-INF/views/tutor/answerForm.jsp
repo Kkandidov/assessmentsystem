@@ -5,7 +5,7 @@
 <div class="mycont">
     <div class="margin-top185">
         <%--@elvariable id="answer" type=""--%>
-        <form:form action="/tutor/save-answer" method="post" modelAttribute="answer">
+        <form:form action="${contextRoot}/tutor/save-answer" method="post" modelAttribute="answer">
 
             <!-- need to associate this data with customer id -->
             <form:hidden path="id"/>
