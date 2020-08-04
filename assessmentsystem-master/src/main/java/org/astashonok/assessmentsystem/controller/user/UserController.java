@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -143,9 +145,13 @@ public class UserController {
                 .filter(s -> !s.isCorrect())
                 .collect(Collectors.toList());
 
+        BigDecimal percentage = BigDecimal.valueOf(
+                ((fullStatistic.size() - result.size()) * 1. / fullStatistic.size()) * 100
+        );
+        percentage = percentage.setScale(2, RoundingMode.HALF_UP);
+
         mv.addObject("resultStatistic", result);
-        mv.addObject("resultInPercent"
-                , ((fullStatistic.size() - result.size()) * 1. / fullStatistic.size()) * 100);
+        mv.addObject("resultInPercent", percentage.doubleValue());
         testDto.iterator().clearData();
         return mv;
     }
