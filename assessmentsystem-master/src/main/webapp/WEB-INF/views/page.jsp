@@ -121,6 +121,10 @@
             <%@include file="tutor/tutorLiteratures.jsp" %>
         </c:if>
 
+        <c:if test="${clickedTutorEditLinks == true}">
+            <%@include file="tutor/tutorLinks.jsp" %>
+        </c:if>
+
         <c:if test="${clickedTutorSelectStatistic == true}">
             <%@include file="tutor/statistic/selectStatistic.jsp" %>
         </c:if>

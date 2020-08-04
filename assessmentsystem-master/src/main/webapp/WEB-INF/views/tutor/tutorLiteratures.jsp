@@ -9,6 +9,7 @@
         <thead>
         <tr>
             <th>Литература</th>
+            <th>Ссылки</th>
             <th>Действие</th>
         </tr>
         </thead>
@@ -23,6 +24,10 @@
                         <input type="hidden" name="literatureId" value="${liter.id}">
                         <input required type="text" name="liter-desc" class="input-group input-group-text"
                                value="${liter.description}">
+                    </td>
+                    <td>
+                        <a href="${contextRoot}/tutor/test/${testId}/question/${question.id}/literature/${liter.id}"
+                           class="btn btn-light">Ссылки</a>
                     </td>
                     <td>
                         <button type="submit" class="btn btn-outline-secondary">Изменить</button>
