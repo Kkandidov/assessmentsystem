@@ -39,7 +39,7 @@ public class QQTService implements TtqService {
         Topic topic = topicService.createTopicByName(nameTopic);
         Test test = testService.createTestByName(nameTest,topic);
         Question question = questionService.getQuestionByDescription(nameQuestion,test);
-        return question ;
+        return question;
     }
 
   /*  @Transactional

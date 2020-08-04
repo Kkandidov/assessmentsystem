@@ -1,5 +1,6 @@
 package org.astashonok.assessmentsystem.controller.admin;
 
+import org.astashonok.assessmentsystem.model.Topic;
 import org.astashonok.assessmentsystem.service.api.QuestionService;
 import org.astashonok.assessmentsystem.service.api.TestService;
 import org.astashonok.assessmentsystem.service.api.TopicService;
@@ -7,6 +8,7 @@ import org.astashonok.assessmentsystem.service.api.TtqService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,27 +49,20 @@ public class CreateTestController {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Создание теста");
         mv.addObject("clickedCreateTest", true);
-        mv.addObject("topics", topicService.getNamesTopics());
-        mv.addObject("tests", testService.getNamesTests());
-        mv.addObject("questions", questionService.getNamesQuestions());
         return mv;
     }
 
-    @GetMapping("/saveNewQuestion")
+    @PostMapping("/createTest")
     public ModelAndView addTest(@RequestParam(name = "topic") String nameTopic,
-                                @RequestParam(name = "testt") String nameTest,
-                                @RequestParam(name = "question") String nameQuestion) {
+                                @RequestParam(name = "description") String description) {
         ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Создание теста");
+        mv.addObject("title", "Создание темы");
         mv.addObject("clickedCreateTest", true);
-        ttqService.createNewQuestion(nameTopic, nameTest, nameQuestion);
-        List<String> nameTopics = topicService.getNamesTopics();
-        List<String> nameTests = testService.getNamesTests();
-        List<String> nameQuestions = questionService.getNamesQuestions();
-        mv.addObject("topics", nameTopics);
-        mv.addObject("tests", nameTests);
-        mv.addObject("questions", nameQuestions);
-        mv.addObject("success", "Добавлен вопрос \"" + nameQuestion + "\" в тест " + nameTest);
+        Topic topic = new Topic();
+        topic.setName(nameTopic);
+        topic.setDescription(description);
+        topicService.add(topic);
+        mv.addObject("message","Добавлена тема:\"" + nameTopic);
         return mv;
     }
 }

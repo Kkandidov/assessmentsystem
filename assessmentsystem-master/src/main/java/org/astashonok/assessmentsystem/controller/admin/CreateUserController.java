@@ -100,6 +100,7 @@ public class CreateUserController {
         mv.addObject("clickedEditPage", true);
 
         User user = userService.getById(id);
+        user.setPassword("");
         mv.addObject("allRoles", RoleName.values());
         model.addAttribute("user", user);
         return mv;

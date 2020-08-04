@@ -18,6 +18,7 @@ public class Test extends EntityAbstract {
     private String name;
     private String description;
 
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH, DETACH})
     @JoinColumn(name = "topicId", nullable = false)
     @JsonIgnore
