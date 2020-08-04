@@ -31,7 +31,8 @@
                     </td>
                     <td>
                         <button type="submit" class="btn btn-outline-secondary">Изменить</button>
-                        <a href="${contextRoot}/tutor/test/${testId}/question/${question.id}/delete-literature/${liter.id}" class="btn btn-danger">
+                        <a href="${contextRoot}/tutor/test/${testId}/question/${question.id}/delete-literature/${liter.id}"
+                           class="btn btn-danger" onclick="if (!(confirm('Точно хотите удалить?'))) return false">
                             Удалить</a>
                     </td>
                 </form:form>
@@ -50,7 +51,7 @@
         <button type="submit" class="btn btn-success b">Добавить литературу</button>
     </form:form>
 
-    <input type="button" class="btn btn-info mt-3" value="Вернуться назад"
+    <input type="button" class="btn btn-info mt-3" value="Вернуться к вопросам"
            onclick="window.location.href='${contextRoot}/tutor/test/${testId}'; return false;"/>
 
 </div>

@@ -47,7 +47,6 @@
         <input required type="text" name="answer-desc" cssClass="css-input"/>
 
         <label>Верный?</label>
-        <%--        <input type="text" name="isCorrect" cssClass="css-input"/>--%>
 
         <select class="css-input" name="isCorrect">
             <option value="false">Нет</option>
@@ -57,7 +56,7 @@
         <button type="submit" class="btn btn-success b">Добавить ответ</button>
     </form:form>
 
-    <input type="button" class="btn btn-info mt-3" value="Вернуться назад"
+    <input type="button" class="btn btn-info mt-3" value="Вернуться к вопросам"
            onclick="window.location.href='${contextRoot}/tutor/test/${testId}'; return false;"/>
 </div>
 

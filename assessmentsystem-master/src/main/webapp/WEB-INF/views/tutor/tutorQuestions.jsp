@@ -34,7 +34,8 @@
                     </td>
                     <td>
                         <button type="submit" class="btn btn-outline-secondary"> Изменить</button>
-                        <a href="${contextRoot}/tutor/test/${test.id}/delete/${question.id}" class="btn btn-danger"> Удалить</a>
+                        <a href="${contextRoot}/tutor/test/${test.id}/delete/${question.id}" class="btn btn-danger"
+                           onclick="if (!(confirm('Точно хотите удалить?'))) return false"> Удалить</a>
                     </td>
                 </form:form>
             </tr>
