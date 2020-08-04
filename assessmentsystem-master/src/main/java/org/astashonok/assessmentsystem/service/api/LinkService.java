@@ -9,4 +9,5 @@ public interface LinkService extends LinkRepository {
 
     Link getById(long id);
     List<Link> getAll();
+    List<Link> getByLiteratureId(long id);
 }

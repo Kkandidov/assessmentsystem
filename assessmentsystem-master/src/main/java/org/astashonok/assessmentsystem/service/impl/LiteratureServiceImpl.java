@@ -35,4 +35,14 @@ public class LiteratureServiceImpl implements LiteratureService {
     public List<Literature> getAll() {
         return getAll(Literature.class);
     }
+
+    @Override
+    @Transactional
+    public List<Literature> getByQuestionId(long id) {
+        return sessionFactory
+                .getCurrentSession()
+                .createQuery("FROM Literature WHERE question.id = :id", Literature.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 }

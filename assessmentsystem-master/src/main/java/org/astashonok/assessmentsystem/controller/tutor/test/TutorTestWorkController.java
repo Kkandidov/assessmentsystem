@@ -122,9 +122,9 @@ public class TutorTestWorkController {
     //addAnswer
     @PostMapping("/test/{test}/edit/{question}/add")
     public String addAnswer(@PathVariable("test") Long testId,
-                               @PathVariable("question") Long questId,
-                               @RequestParam("answer-desc") String answerDesc,
-                               @RequestParam("isCorrect") boolean correct){
+                            @PathVariable("question") Long questId,
+                            @RequestParam("answer-desc") String answerDesc,
+                            @RequestParam("isCorrect") boolean correct){
 
         Answer answer = new Answer();
 
@@ -143,8 +143,8 @@ public class TutorTestWorkController {
 
     @GetMapping("/test/delete-answer")
     public String deleteAnswer(@RequestParam("test") Long testId,
-                                 @RequestParam("question") Long questId,
-                                 @RequestParam("answer") Long ansId){
+                               @RequestParam("question") Long questId,
+                               @RequestParam("answer") Long ansId){
 
         answerService.delete(answerService.getById(ansId));
         return "redirect:/tutor/test/" + testId + "/answer/" + questId;
@@ -162,4 +162,58 @@ public class TutorTestWorkController {
 
         return "redirect:/tutor/test/" + testId + "/answer/" + questId;
     }
+
+
+    @GetMapping("/test/{test}/literature/{question}")
+    public String getLiterature(@PathVariable("test") Long testId,
+                                @PathVariable("question") Long questId,
+                                Model model){
+
+        model.addAttribute("clickedTutorEditLiterature", true);
+        model.addAttribute("title", "Литература");
+
+        model.addAttribute("question", questionService.getById(questId));
+        model.addAttribute("literature", literatureService.getByQuestionId(questId));
+        model.addAttribute("testId", testId);
+
+        return "page";
+    }
+
+    @PostMapping("/test/add-literature")
+    public String addLiterature(@RequestParam("test") Long testId,
+                                @RequestParam("question") Long questId,
+                                @RequestParam("liter-desc") String literDesc){
+
+        Literature literature = new Literature();
+        literature.setDescription(literDesc);
+        literature.setQuestion(questionService.getById(questId));
+        literatureService.add(literature);
+
+        return "redirect:/tutor/test/" + testId + "/literature/" + questId;
+    }
+
+
+    @PostMapping("/test/literature/update")
+    public String updateLiterature(@RequestParam("test") Long testId,
+                                   @RequestParam("question") Long questId,
+                                   @RequestParam("literatureId") Long literatureId,
+                                   @RequestParam("liter-desc") String literDesc){
+
+        Literature literature = literatureService.getById(literatureId);
+        literature.setDescription(literDesc);
+        literatureService.update(literature);
+
+        return "redirect:/tutor/test/" + testId + "/literature/" + questId;
+    }
+
+
+    @GetMapping("test/{test}/question/{question}/delete-literature/{literature}")
+    public String deleteLiterature(@PathVariable("test") Long testId,
+                                   @PathVariable("question") Long questId,
+                                   @PathVariable("literature") Long literatureId){
+
+        literatureService.delete(literatureService.getById(literatureId));
+        return "redirect:/tutor/test/" + testId + "/literature/" + questId;
+    }
+
 }

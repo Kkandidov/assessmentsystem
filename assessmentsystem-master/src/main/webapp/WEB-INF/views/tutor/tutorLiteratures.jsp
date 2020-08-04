@@ -1,39 +1,51 @@
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
-<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%--<div class="container">--%>
+<div class="container">
 
-<%--    <h3>Тест: ${test.name}</h3>--%>
-<%--    <p>${test.description}</p>--%>
-<%--    <table class="table">--%>
-<%--        <thead>--%>
-<%--        <tr>--%>
-<%--            <th>Вопрос</th>--%>
-<%--            <th>Литература</th>--%>
-<%--            <th>Действие</th>--%>
-<%--        </tr>--%>
-<%--        </thead>--%>
-<%--        <tbody>--%>
-<%--        <c:forEach items="${links}" var="link">--%>
-<%--            <tr>--%>
-<%--                <td>${link.link}</td>--%>
-<%--&lt;%&ndash;                <td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <a href="/tutor/test/${link.id}/edit/${link.id}" style="text-decoration: none">Изменить</a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <a href="/tutor/test/${link.id}/delete/${question.id}" style="text-decoration: none">Удалить</a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                </td>&ndash;%&gt;--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
-<%--        </tbody>--%>
-<%--    </table>--%>
+    <%--@elvariable id="question" type="org.astashonok.assessmentsystem.model.Question"--%>
+    <h3>Литература к вопросу: ${question.description}</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Литература</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
 
-<%--&lt;%&ndash;    <form:form action="" method="post">&ndash;%&gt;--%>
+        <c:forEach items="${literature}" var="liter">
+            <tr>
+                <form:form action="${contextRoot}/tutor/test/literature/update" method="post">
+                    <td>
+                        <input type="hidden" name="test" value="${testId}">
+                        <input type="hidden" name="question" value="${question.id}">
+                        <input type="hidden" name="literatureId" value="${liter.id}">
+                        <input required type="text" name="liter-desc" class="input-group input-group-text"
+                               value="${liter.description}">
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-outline-secondary">Изменить</button>
+                        <a href="${contextRoot}/tutor/test/${testId}/question/${question.id}/delete-literature/${liter.id}" class="btn btn-danger">
+                            Удалить</a>
+                    </td>
+                </form:form>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 
-<%--&lt;%&ndash;        <label>Ссылка: </label>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <input type="text" name="link" cssClass="css-input"/>&ndash;%&gt;--%>
+    <form:form action="${contextRoot}/tutor/test/add-literature" method="post">
+        <input type="hidden" name="test" value="${testId}">
+        <input type="hidden" name="question" value="${question.id}">
 
-<%--&lt;%&ndash;        <button type="submit" class="btn btn-success b">Добавить ссылку</button>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    </form:form>&ndash;%&gt;--%>
+        <label>Литература: </label>
+        <input required type="text" name="liter-desc" class=""/>
 
-<%--    <button type="button" class="btn btn-danger b" onclick="location.href='${contextRoot}/tutor'">На главную</button>--%>
+        <button type="submit" class="btn btn-success b">Добавить литературу</button>
+    </form:form>
 
-<%--</div>--%>
+    <input type="button" class="btn btn-info mt-3" value="Вернуться назад"
+           onclick="window.location.href='${contextRoot}/tutor/test/${testId}'; return false;"/>
+
+</div>

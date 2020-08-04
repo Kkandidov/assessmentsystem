@@ -9,5 +9,6 @@ public interface LiteratureService extends LiteratureRepository {
 
     Literature getById(long id);
     List<Literature> getAll();
+    List<Literature> getByQuestionId(long id);
 }
 

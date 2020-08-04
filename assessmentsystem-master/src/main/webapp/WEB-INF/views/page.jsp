@@ -117,6 +117,10 @@
             <%@include file="tutor/tutorAnswers.jsp" %>
         </c:if>
 
+        <c:if test="${clickedTutorEditLiterature == true}">
+            <%@include file="tutor/tutorLiteratures.jsp" %>
+        </c:if>
+
         <c:if test="${clickedTutorSelectStatistic == true}">
             <%@include file="tutor/statistic/selectStatistic.jsp" %>
         </c:if>
@@ -127,10 +131,6 @@
 
         <c:if test="${clickedTutorUserStatistic == true}">
             <%@include file="tutor/statistic/user-statistic.jsp" %>
-        </c:if>
-
-        <c:if test="${clickedTutorAnswerForm == true}">
-            <%@include file="tutor/answerForm.jsp" %>
         </c:if>
 
         <c:if test="${clickedTutorTestPage == true}">

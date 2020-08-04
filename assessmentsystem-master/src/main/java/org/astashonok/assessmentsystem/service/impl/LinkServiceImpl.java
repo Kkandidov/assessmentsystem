@@ -35,4 +35,14 @@ public class LinkServiceImpl implements LinkService {
     public List<Link> getAll() {
         return getAll(Link.class);
     }
+
+    @Override
+    @Transactional
+    public List<Link> getByLiteratureId(long id) {
+        return sessionFactory
+                .getCurrentSession()
+                .createQuery("FROM Link WHERE literature.id = :id", Link.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 }
