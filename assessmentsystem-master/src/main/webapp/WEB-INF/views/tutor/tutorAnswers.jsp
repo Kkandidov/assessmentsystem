@@ -14,7 +14,7 @@
         <tbody>
         <c:forEach items="${answers}" var="answer">
 
-            <c:url var="deleteLink" value="${contextRoot}/tutor/test/delete-answer">
+            <c:url var="deleteLink" value="/tutor/test/delete-answer">
                 <c:param name="answer" value="${answer.id}"/>
                 <c:param name="test" value="${testId}"/>
                 <c:param name="question" value="${question.id}"/>
@@ -41,7 +41,7 @@
         </tbody>
     </table>
 
-    <form:form action="/tutor/test/${testId}/edit/${question.id}/add" method="post">
+    <form:form action="${contextRoot}/tutor/test/${testId}/edit/${question.id}/add" method="post">
 
         <label>Ответ: </label>
         <input required type="text" name="answer-desc" cssClass="css-input"/>
@@ -58,6 +58,6 @@
     </form:form>
 
     <input type="button" class="btn btn-info mt-3" value="Вернуться назад"
-           onclick="window.location.href='/tutor/test/${testId}'; return false;"/>
+           onclick="window.location.href='${contextRoot}/tutor/test/${testId}'; return false;"/>
 </div>
 

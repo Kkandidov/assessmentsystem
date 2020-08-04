@@ -5,14 +5,14 @@
 
     <div>
 
-        <select class="form-control mb-3" id="topics">
+        <select required class="form-control mb-3" id="topics">
             <option value="" disabled selected>Выберите тему</option>
             <c:forEach items="${topics}" var="topic">
                 <option value="${topic.id}">${topic.name}</option>
             </c:forEach>
         </select>
 
-        <select class="form-control" id="tests" name="tests">
+        <select required class="form-control" id="tests" name="tests">
         </select>
 
         <button type="button" id="test" class="btn btn-success b mt-3">Редактировать тест</button>

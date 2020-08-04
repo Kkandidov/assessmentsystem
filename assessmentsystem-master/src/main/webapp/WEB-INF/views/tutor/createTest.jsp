@@ -18,7 +18,7 @@
                 </script>
 
                 <div class="form-group">
-                    <select class="form-control" id="topicId" name="topicId">
+                    <select required class="form-control" id="topicId" name="topicId">
                         <option value="" disabled selected>Выберите тему</option>
                         <c:forEach items="${topics}" var="topic">
                             <option value="${topic.id}">${topic.name}</option>
