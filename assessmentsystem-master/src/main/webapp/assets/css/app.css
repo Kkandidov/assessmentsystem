@@ -69,3 +69,6 @@ body {
 .leftal{
     text-align: left;
 }
+button{
+    width: 240px;
+}

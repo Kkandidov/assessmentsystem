@@ -18,7 +18,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="sessionFactory" value="cb3ff177-e03d-4f62-80d7-f98567b9a0ba" />
+          <unit-entry name="sessionFactory" value="62c14728-c082-4364-b5a5-f0609253547c" />
         </datasource-map>
         <naming-strategy-map />
       </configuration>

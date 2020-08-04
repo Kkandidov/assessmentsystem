@@ -8,7 +8,7 @@
         </div>
         <div class="col-lg-6 mycont">
             <button type="button" class="btn btn-success b" onclick="location.href='${contextRoot}/admin/createTest'">
-                Создать тест
+                Создать тему
             </button>
             <br>
             <button type="button" class="btn btn-success b"
