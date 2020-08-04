@@ -39,7 +39,8 @@ $().ready(function () {
         case 'Аутентификация':
             $('#authenticationBar').addClass('active');
             break;
+        case 'Выбор роли':
+            $('#chooseRole').addClass('active');
+            break;
     }
-
-
 });

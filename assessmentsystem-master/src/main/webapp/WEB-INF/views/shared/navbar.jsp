@@ -22,6 +22,9 @@
                 </security:authorize>
                 <ul class="navbar-nav ml-right">
                     <security:authorize access="isAuthenticated()">
+                        <li class="nav-item" id="chooseRole">
+                            <a class="nav-link" href="${contextRoot}/choose/role">Выбрать роль</a>
+                        </li>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
