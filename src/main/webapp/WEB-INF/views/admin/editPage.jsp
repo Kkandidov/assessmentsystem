@@ -14,12 +14,10 @@
                     modelAttribute="user">
                 <form:input type="hidden" path="id" name="id" value="${user.id}"/>
                 <div class="form-group">
-                    <form:input type="text" path="firstName" class="form-control" placeholder="Имя" id="firstName"
-                                value="${user.firstName}"/>
+                    <form:input type="text" path="firstName" class="form-control" placeholder="Имя" id="firstName"/>
                 </div>
                 <div class="form-group">
-                    <form:input type="text" path="lastName" class="form-control" placeholder="Фамилия" id="lastName"
-                           value="${user.lastName}"/>
+                    <form:input type="text" path="lastName" class="form-control" placeholder="Фамилия" id="lastName"/>
                 </div>
                 <div class="form-group">
                     <form:input type="text" path="login" class="form-control" placeholder="Логин" id="login"/>
