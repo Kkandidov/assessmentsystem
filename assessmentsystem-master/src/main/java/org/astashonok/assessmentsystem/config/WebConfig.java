@@ -52,6 +52,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${mail.from}")
     private String from;
 
+    @Value("${mail.port}")
+    private int port;
+
     @Value("${mail.username}")
     private String username;
 
@@ -64,16 +67,17 @@ public class WebConfig implements WebMvcConfigurer {
         Properties mailProperties = new Properties();
         mailProperties.put("mail.smtp.auth", "true");
         mailProperties.put("mail.smtp.starttls.enable", "true");
-        mailProperties.put("mail.smtp.socketFactory.port", "25");
         mailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         mailProperties.put("mail.smtp.socketFactory.fallback", "false");
         mailProperties.setProperty("mail.smtp.quitwait", "false");
-        mailSender.setJavaMailProperties(mailProperties);
+
         mailSender.setHost(host);
-        mailSender.setPort(25);
+        mailSender.setPort(port);
         mailSender.setProtocol(protocol);
         mailSender.setUsername(username);
         mailSender.setPassword(password);
+        mailSender.setJavaMailProperties(mailProperties);
+
         return mailSender;
     }
 }
