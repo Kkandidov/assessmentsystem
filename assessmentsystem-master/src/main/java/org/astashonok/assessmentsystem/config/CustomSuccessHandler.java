@@ -34,39 +34,6 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
-//    private String determineTargetUrl(Authentication authentication) {
-//        String url;
-//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-//        Set<String> roles = new HashSet<>();
-//
-//        for (GrantedAuthority a : authorities) {
-//            roles.add(a.getAuthority());
-//        }
-//
-//        if (isTutor(roles)) {
-//            url = "/tutor";
-//        } else if (isAdmin(roles)) {
-//            url = "/admin";
-//        } else if (isUser(roles)) {
-//            url = "/user";
-//        } else {
-//            url = "/access-denied";
-//        }
-//
-//        return url;
-//    }
-
-    private boolean isUser(Set<String> roles) {
-        return roles.contains("ROLE_USER");
-    }
-
-    private boolean isAdmin(Set<String> roles) {
-        return roles.contains("ROLE_ADMIN");
-    }
-
-    private boolean isTutor(Set<String> roles) {
-        return roles.contains("ROLE_TUTOR");
-    }
 
     @Override
     public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
