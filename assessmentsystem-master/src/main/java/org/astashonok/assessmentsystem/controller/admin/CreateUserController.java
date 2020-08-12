@@ -4,6 +4,9 @@ import org.astashonok.assessmentsystem.model.User;
 import org.astashonok.assessmentsystem.model.enums.RoleName;
 import org.astashonok.assessmentsystem.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpRequest;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,16 +15,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
+@PropertySource("classpath:gmail.com.properties")
 public class CreateUserController {
 
     private UserService userService;
     private PasswordEncoder passwordEncoder;
     private SimpleMailMessage simpleMailMessage;
     private JavaMailSender javaMailSender;
+
+    @Value("mail.from")
+    private String fromMail;
 
     @Autowired
     public void setJavaMailSender(JavaMailSender javaMailSender) {
@@ -44,14 +52,19 @@ public class CreateUserController {
     }
 
     @PostMapping("/createUser")
-    public ModelAndView createUserGet(Model model, User user) {
+    public ModelAndView createUserGet(Model model, User user, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Создание пользователя");
         mv.addObject("clickedCreateUserGet", true);
         userService.add(user, passwordEncoder);
 
         simpleMailMessage.setTo(user.getEmail());
-        simpleMailMessage.setText("Вы были успешно зарегестрированы. Перейти по ссылке: http://localhost:8080/login");
+        simpleMailMessage.setFrom(fromMail);
+        simpleMailMessage.setText("Вы были успешно зарегестрированы. Перейдите по ссылке: "
+                + "http://localhost:"
+                + request.getLocalPort()
+                + request.getContextPath()
+                + "/login");
         javaMailSender.send(simpleMailMessage);
 
         user = new User();
@@ -69,6 +82,10 @@ public class CreateUserController {
         mv.addObject("title", "Создание пользователя");
         mv.addObject("clickedCreateUserGet", true);
 
+        return getModelAndView(model, mv);
+    }
+
+    private ModelAndView getModelAndView(Model model, ModelAndView mv) {
         List<User> userList = userService.getAll(User.class);
         User user = new User();
         mv.addObject("userList", userList);
@@ -85,12 +102,7 @@ public class CreateUserController {
 
         User user = userService.getById(id);
         userService.delete(user);
-        List<User> userList = userService.getAll(User.class);
-        User user1 = new User();
-        mv.addObject("userList", userList);
-        model.addAttribute("user", user1);
-        mv.addObject("allRoles", RoleName.values());
-        return mv;
+        return getModelAndView(model, mv);
     }
 
     @GetMapping("/edit/{id}")
@@ -113,11 +125,6 @@ public class CreateUserController {
         mv.addObject("clickedCreateUserGet", true);
 
         userService.update(user, passwordEncoder);
-        List<User> userList = userService.getAll(User.class);
-        User user1 = new User();
-        mv.addObject("userList", userList);
-        model.addAttribute("user", user1);
-        mv.addObject("allRoles", RoleName.values());
-        return mv;
+        return getModelAndView(model, mv);
     }
 }

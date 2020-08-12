@@ -35,6 +35,7 @@ public class WebConfig implements WebMvcConfigurer {
         resolver.setViewClass(JstlView.class);
         return resolver;
     }
+
     @Bean
     public SimpleMailMessage templateSimpleMessage() {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -45,19 +46,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Value("${mail.protocol}")
     private String protocol;
-
     @Value("${mail.host}")
     private String host;
-
-    @Value("${mail.from}")
-    private String from;
-
     @Value("${mail.port}")
     private int port;
-
     @Value("${mail.username}")
     private String username;
-
     @Value("${mail.password}")
     private String password;
 
