@@ -15,7 +15,7 @@ $().ready(function () {
     $("#test").on('click', function () {
         let id = $("#tests option:selected").val();
         if (id === undefined) {
-            location.href = window.contextRoot + '/tutor/test/test?error';
+            location.href = window.contextRoot + '/tutor/tutor-test?error';
         } else {
             location.href = window.contextRoot + '/tutor/test/' + id;
         }

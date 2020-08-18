@@ -3,9 +3,15 @@
 
 <div class="container">
 
-    <h3>Тест: ${test.name}</h3>
-    <p>${test.description}</p>
-    <table class="table">
+    <div>
+        <h3>Тест: ${test.name}</h3>
+        <p>${test.description}</p>
+        <a href="${contextRoot}/tutor/test/deleteTest?testId=${test.id}" class="btn btn-danger"
+           style="margin-top: -10px" onclick="if (!(confirm('Точно хотите удалить?'))) return false">Удалить тест</a>
+    </div>
+
+
+    <table class=" table">
         <thead>
         <tr>
             <th>Вопрос</th>
@@ -41,16 +47,17 @@
             </tr>
         </c:forEach>
         </tbody>
-    </table>
+        </table>
 
-    <form:form action="${contextRoot}/tutor/test/${test.id}/add" method="post">
+        <form:form action="${contextRoot}/tutor/test/${test.id}/add" method="post">
 
-        <label>Вопрос: </label>
-        <input required type="text" name="quest-name" class=""/>
+            <label>Вопрос: </label>
+            <input required type="text" name="quest-name" class=""/>
 
-        <button type="submit" class="btn btn-success b">Добавить вопрос</button>
-    </form:form>
+            <button type="submit" class="btn btn-success b">Добавить вопрос</button>
+        </form:form>
 
-    <button type="button" class="btn btn-info mt-3" onclick="location.href='${contextRoot}/tutor'">На главную</button>
+        <button type="button" class="btn btn-info mt-3" onclick="location.href='${contextRoot}/tutor'">На главную
+        </button>
 
-</div>
+    </div>

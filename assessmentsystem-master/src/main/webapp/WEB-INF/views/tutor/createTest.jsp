@@ -10,12 +10,20 @@
 
         <div class="col-lg-6 mycont">
             <form:form action="${contextRoot}/tutor/createTest" method="post">
-                <p id="success">${message}</p>
-                <script>
-                    setTimeout(function () {
-                        document.getElementById("success").style.display = 'none';
-                    }, 6000)
-                </script>
+
+                <c:if test="${not empty message and not empty testId}">
+                    <div id="success" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>${message}</strong>
+                        <button type="button" class="btn btn-light"
+                                onclick="location.href='${contextRoot}/tutor/test/${testId}'">Редактировать
+                        </button>
+                        <script>
+                            setTimeout(function () {
+                                document.getElementById("success").style.display = 'none';
+                            }, 6000)
+                        </script>
+                    </div>
+                </c:if>
 
                 <div class="form-group">
                     <select required class="form-control" id="topicId" name="topicId">
@@ -26,7 +34,8 @@
                     </select>
                     <br>
                     <input required name="test-name" type="text" class="form-control" placeholder="Название теста"/>
-                    <textarea required name="test-description" type="text" class="form-control mt-3" placeholder="Описание теста"></textarea>
+                    <textarea required name="test-description" type="text" class="form-control mt-3"
+                              placeholder="Описание теста"></textarea>
                 </div>
 
                 <input type="submit" class="btn btn-success b" value="Создать тест">

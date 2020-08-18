@@ -1,9 +1,6 @@
 package org.astashonok.assessmentsystem.controller.tutor.test;
 
-import org.astashonok.assessmentsystem.model.Answer;
-import org.astashonok.assessmentsystem.model.Link;
-import org.astashonok.assessmentsystem.model.Literature;
-import org.astashonok.assessmentsystem.model.Question;
+import org.astashonok.assessmentsystem.model.*;
 import org.astashonok.assessmentsystem.service.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,8 +49,14 @@ public class TutorTestWorkController {
     }
 
     @GetMapping("/tutor-test")
-    public String getTutorTest(Model model) {
-        model.addAttribute("title", "Добавить тест");
+    public String getTutorTest(@RequestParam(name = "error", required = false) String error,
+                               Model model) {
+
+        if (error != null) {
+            model.addAttribute("message", "Вы не выбрали тест");
+        }
+
+        model.addAttribute("title", "Выбрать тест");
         model.addAttribute("clickedTutorTestPage", true);
         model.addAttribute("topics", topicService.getAll());
         return "page";
@@ -68,6 +71,15 @@ public class TutorTestWorkController {
         model.addAttribute("test", testService.getById(testId));
         model.addAttribute("questions", questionService.getByTestId(testId));
         return "page";
+    }
+
+    @GetMapping("/test/deleteTest")
+    public String deleteTest(@RequestParam("testId") Long testId,
+                              Model model) {
+
+        testService.delete(testService.getById(testId));
+
+        return "redirect:/tutor/tutor-test";
     }
 
     @PostMapping("/test/{tests}/add")

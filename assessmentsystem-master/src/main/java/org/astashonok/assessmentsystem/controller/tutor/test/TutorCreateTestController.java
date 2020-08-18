@@ -31,6 +31,7 @@ public class TutorCreateTestController {
 
     @GetMapping(value = "/createTest")
     public String createTest(Model model){
+        model.addAttribute("title", "Создать тест");
         model.addAttribute("clickedTutorCreateTest", true);
         model.addAttribute("topics", topicService.getAll());
         return "page";
@@ -43,6 +44,7 @@ public class TutorCreateTestController {
                           Model model){
 
         model.addAttribute("clickedTutorCreateTest", true);
+        model.addAttribute("title", "Создать тест");
 
         Topic topic = topicService.getById(topicId);
         Test test = new Test();
@@ -51,10 +53,11 @@ public class TutorCreateTestController {
         test.setDescription(descTest);
         test.setTopic(topic);
 
-        testService.add(test);
+        test = testService.add(test);
 
         model.addAttribute("topics", topicService.getAll());
         model.addAttribute("message","Добавлен тест:\"" + nameTest + "\" в топик: " + topic.getName());
+        model.addAttribute("testId", test.getId());
 
         return "page";
     }

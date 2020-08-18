@@ -4,6 +4,15 @@
 <div class="container ">
 
     <div>
+        <c:if test="${not empty message}">
+            <div id="message" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>${message}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </c:if>
+
 
         <select required class="form-control mb-3" id="topics">
             <option value="" disabled selected>Выберите тему</option>
